@@ -1,0 +1,9 @@
+<md-button class="md-icon-button" ng-click="select_lastest_dipendenti_formazioni()" aria-label="refresh">
+	<md-icon md-svg-src="img/icons/refresh.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiorna</md-tooltip>
+</md-button>
+<div flex></div>
+<md-button ng-if="scadenziario.dipendente && (logged_user | utente_is_utente)" class="md-icon-button" ng-click="anagrafica_dipendente_formazione({df_iddipendente:scadenziario.dipendente.di_id, dipendente: scadenziario.dipendente}, false, true)" aria-label="add">
+	<md-icon md-svg-src="img/icons/add.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiungi</md-tooltip>
+</md-button>

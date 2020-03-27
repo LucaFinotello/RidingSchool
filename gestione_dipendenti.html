@@ -1,0 +1,27 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar no-padding"
+	md-colors="{background: colors.secondary_toolbar}"
+>
+	<md-button class="md-icon-button" ng-class="{'selected': dipendenti.rubrica_aziende.fl_open}" ng-click="dipendenti.toggle_rubrica(dipendenti.rubrica_aziende)">
+		<md-icon md-svg-icon="img/icons/circuit.svg"></md-icon>
+		<md-tooltip md-direction="top">Circuiti</md-tooltip>
+	</md-button>
+	<md-button class="md-icon-button" ng-class="{'selected': dipendenti.rubrica_filtri_dipendenti.fl_open}" ng-click="dipendenti.toggle_rubrica(dipendenti.rubrica_filtri_dipendenti)">
+		<md-icon md-svg-icon="img/icons/filter.svg"></md-icon>
+		<md-tooltip md-direction="top">Altri filtri</md-tooltip>
+	</md-button>
+
+	<div flex></div>
+	<md-button class="md-icon-button" ng-click="dipendenti.fn_filtri_set_default_filtri_app()">
+		<md-icon md-svg-icon="img/icons/broom.svg"></md-icon>
+		<md-tooltip md-direction="top">Pulisci filtri</md-tooltip>
+	</md-button>
+</div>
+
+<div layout="row" layout-align="start start" class="full-height" flex>
+	<div ng-if="dipendenti.rubrica_aziende.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(dipendenti.rubrica_aziende)" ng-include="rubrica.template"></div>
+	<div ng-if="dipendenti.rubrica_filtri_dipendenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(dipendenti.rubrica_filtri_dipendenti)" ng-include="rubrica.template"></div>
+	<div flex ng-controller="filtri_app" ng-init="filtri_app(dipendenti)" ub-table layout="column" layout-align="start stretch" class="full-height" ng-include="'ubtable_dipendenti.html'"></div>
+</div>

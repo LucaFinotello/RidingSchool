@@ -1,0 +1,83 @@
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="space-between center" layout-wrap>
+		<div layout="row" layout-align="space-between center" flex-xs="100" flex-sm="100" flex-gt-sm="auto">
+			<md-icon md-svg-icon="img/icons/task.svg"></md-icon>
+			<md-input-container flex>
+				<label>Descrizione</label>
+				<input type="text" ng-model="checkups.selected.ch_descr" ng-required="true" ng-readonly="checkups.selected.disabledform" />
+			</md-input-container>
+		</div>
+		<md-input-container flex-xs="100" flex-sm="100" flex-gt-sm="none">
+			<label>Data</label>
+			<md-datepicker ng-model="checkups.selected.date" ng-required="true" ng-disabled="checkups.selected.disabledform" ng-readonly="checkups.selected.disabledform"></md-datepicker>
+		</md-input-container>
+		<md-input-container flex-xs="auto" flex-sm="auto" flex-gt-sm="none">
+			<label>Ora</label>
+			<input type="time" ng-model="checkups.selected.date" ng-required="true" ng-disabled="checkups.selected.disabledform" ng-readonly="checkups.selected.disabledform" />
+		</md-input-container>
+		<md-button class="md-icon-button" ng-click="checkups.selected.fl_testata_open = !checkups.selected.fl_testata_open" aria-label="toggle">
+			<md-icon md-svg-icon="img/icons/{{checkups.selected.fl_testata_open ? 'arrow_up' : 'arrow_down'}}.svg"></md-icon>
+			<md-tooltip md-direction="bottom">{{checkups.selected.fl_testata_open ? 'Comprimi' : 'Espandi'}}</md-tooltip>
+		</md-button>
+	</div>
+</div>
+
+<md-divider ng-if="checkups.selected.fl_testata_open" layout-margin md-colors="{'border-color': 'grey-900'}"></md-divider>
+
+<div ng-if="checkups.selected.fl_testata_open"> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="start center">
+		<md-icon md-svg-icon="img/icons/person_tie.svg"></md-icon>
+		<md-input-container flex>
+			<md-autocomplete
+				md-selected-item="checkups.selected.azienda"
+				md-search-text="checkups.selected.azienda_search"
+				md-items="azienda in aziende.righe | filter:checkups.selected.azienda_search"
+				md-item-text="azienda.az_descr"
+				md-floating-label="Circuito"
+				md-no-cache="true"
+				md-min-length="0"
+				md-clear-button="logged_user | utente_is_utente"
+				md-selected-item-change="checkups.selected.ch_idazienda = undefined"
+				md-search-text-change="checkups.selected.azienda = undefined; checkups.selected.dipendente = undefined"
+				ng-disabled="checkups.selected.disabledform"
+			>
+				<md-item-template>
+					<div>{{azienda.az_id}} - {{azienda.az_descr}}</div>
+					<md-not-found>Non sono state trovate aziende per "{{checkups.selected.azienda_search}}".</md-not-found>
+				</md-item-template>
+			</md-autocomplete>
+		</md-input-container>
+		<md-button ng-if="checkups.selected.azienda" class="md-icon-button" ng-click="checkups.selected.fl_anagrafica_azienda_open = !checkups.selected.fl_anagrafica_azienda_open" aria-label="toggle">
+			<md-icon md-svg-icon="img/icons/{{checkups.selected.fl_anagrafica_azienda_open ? 'arrow_up' : 'arrow_down'}}.svg"></md-icon>
+			<md-tooltip md-direction="bottom">{{checkups.selected.fl_anagrafica_azienda_open ? 'Comprimi' : 'Espandi'}}</md-tooltip>
+		</md-button>
+	</div>
+</div>
+
+<div ng-if="checkups.selected.fl_testata_open">
+	<div layout="row" layout-align="start center">
+		<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+		<md-input-container flex>
+			<label>Note</label>
+			<textarea rows="2" ng-model="checkups.selected.ch_note" ng-readonly="checkups.selected.disabledform"></textarea>
+		</md-input-container>
+	</div>
+</div>
+<div ng-if="checkups.selected.fl_testata_open && (logged_user | utente_is_utente)">
+	<div layout="row" layout-align="start center">
+		<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+		<md-input-container flex>
+			<label>Note interne</label>
+			<textarea rows="2" ng-model="checkups.selected.ch_note_interne" ng-readonly="checkups.selected.disabledform"></textarea>
+		</md-input-container>
+	</div>
+</div>
+<div ng-if="checkups.selected.fl_testata_open && checkups.selected.ch_idutente == logged_user.username">
+	<div layout="row" layout-align="start center">
+		<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+		<md-input-container flex>
+			<label>Note utente</label>
+			<textarea rows="2" ng-model="checkups.selected.ch_note_utente" ng-readonly="checkups.selected.disabledform"></textarea>
+		</md-input-container>
+	</div>
+</div>

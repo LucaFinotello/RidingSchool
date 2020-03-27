@@ -1,0 +1,201 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.username" aria-label="username">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cognome" aria-label="cognome">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/surname.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.nome" aria-label="nome">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/name.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<!--<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.iddipendente" aria-label="iddipendente">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_helm.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.idazienda" aria-label="idazienda">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_tie.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>-->
+		<md-menu-item ng-if="logged_user.admin == '1'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.admin" aria-label="admin">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/face.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item ng-if="gestione.moduli.scadenziario && logged_user.fl_scadenziario == '1'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.fl_scadenziario" aria-label="fl_scadenziario">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/pista.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item ng-if="gestione.moduli.allegati && logged_user.fl_allegati == '1'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.fl_allegati" aria-label="fl_allegati">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/school.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item ng-if="gestione.moduli.report && logged_user.fl_report == '1'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.fl_report" aria-label="fl_report">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/allegato.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item ng-if="gestione.moduli.gestione && logged_user.fl_gestione == '1'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.fl_gestione" aria-label="fl_gestione">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/settings.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.username">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('username')">
+				<md-icon md-svg-src="img/icons/person.svg"><md-tooltip md-direction="top">Username</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('username') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('username') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cognome">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cognome')">
+				<md-icon md-svg-src="img/icons/surname.svg"><md-tooltip md-direction="top">Cognome</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cognome') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cognome') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.nome">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('nome')">
+				<md-icon md-svg-src="img/icons/name.svg"><md-tooltip md-direction="top">Nome</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('nome') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('nome') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<!--<div class="ub-table-cell" flex ng-if="model.filtri.show.iddipendente">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('iddipendente')">
+				<md-icon md-svg-src="img/icons/person_helm.svg"><md-tooltip md-direction="top">Dipendente</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('iddipendente') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('iddipendente') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.idazienda">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('idazienda')">
+				<md-icon md-svg-src="img/icons/person_tie.svg"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('idazienda') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('idazienda') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>-->
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.admin && logged_user.admin == '1'">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('admin')">
+				<md-icon md-svg-src="img/icons/face.svg"><md-tooltip md-direction="top">Admin</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('admin') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('admin') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.fl_scadenziario && gestione.moduli.scadenziario && logged_user.fl_scadenziario == '1'">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('fl_scadenziario')">
+				<md-icon md-svg-src="img/icons/pista.svg"><md-tooltip md-direction="top">Agenda Pista</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_scadenziario') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_scadenziario') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.fl_allegati && gestione.moduli.allegati && logged_user.fl_allegati == '1'">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('fl_allegati')">
+				<md-icon md-svg-src="img/icons/allegato.svg"><md-tooltip md-direction="top">Allegati</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_allegati') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_allegati') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.fl_report && gestione.moduli.report && logged_user.fl_report == '1'">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('fl_report')">
+				<md-icon md-svg-src="img/icons/school.svg"><md-tooltip md-direction="top">School</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_report') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_report') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.fl_gestione && gestione.moduli.gestione && logged_user.fl_gestione == '1'">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('fl_gestione')">
+				<md-icon md-svg-src="img/icons/settings.svg"><md-tooltip md-direction="top">Gestione</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_gestione') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('fl_gestione') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<!--<div class="ub-table-cell ub-table-cell-33"></div>-->
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="utente in model.filtered" >
+		<div class="ub-table-body-row" layout="row" ng-click="anagrafica_utente(utente)">
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.username">
+				<div layout="row" layout-align="start center" layout-fill>
+					<md-icon md-svg-src="img/icons/person_tie.svg" ng-if="utente | utente_is_azienda"><md-tooltip md-direction="right">Azienda</md-tooltip></md-icon>
+					<md-icon md-svg-src="img/icons/person_helm.svg" ng-if="utente | utente_is_dipendente"><md-tooltip md-direction="right">Dipendente</md-tooltip></md-icon>
+					<md-icon md-svg-src="img/icons/person.svg" ng-if="utente | utente_is_utente"><md-tooltip md-direction="right">Utente</md-tooltip></md-icon>
+					<div class="md-caption" flex md-truncate>{{utente.username}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cognome">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{utente.cognome}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.nome">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{utente.nome}}</div>
+				</div>
+			</div>
+			<!--<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.iddipendente">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{utente.iddipendente}} - {{utente.dipendente.di_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.idazienda">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{utente.idazienda}} - {{aziende.map[utente.idazienda].az_descr}}</div>
+				</div>
+			</div>-->
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.admin && logged_user.admin == '1'">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="utente.admin" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="admin"></md-checkbox>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.fl_scadenziario && gestione.moduli.scadenziario && logged_user.fl_scadenziario == '1'">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="utente.fl_scadenziario" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="fl_scadenziario"></md-checkbox>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.fl_allegati && gestione.moduli.allegati && logged_user.fl_allegati == '1'">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="utente.fl_allegati" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="fl_allegati"></md-checkbox>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.fl_report && gestione.moduli.report && logged_user.fl_report == '1'">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="utente.fl_report" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="fl_report"></md-checkbox>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.fl_gestione && gestione.moduli.gestione && logged_user.fl_gestione == '1'">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="utente.fl_gestione" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="fl_gestione"></md-checkbox>
+				</div>
+			</div>
+			<!--<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="anagrafica_utente(utente)">
+						<md-icon md-svg-icon="img/icons/edit.svg"></md-icon>
+						<md-tooltip md-direction="top">Modifica</md-tooltip>
+					</md-button>
+				</div>
+			</div>-->
+		</div>
+	</div>
+</div>

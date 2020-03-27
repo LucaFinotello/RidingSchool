@@ -1,0 +1,24 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'ubtable_allegati_toolbar.html'"
+></div>
+
+<md-card layout="row" layout-align="start start" class="full-height" flex layout-padding>
+	<div ng-if="allegati.rubrica_utenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(allegati.rubrica_utenti)" ng-include="rubrica.template"></div>
+	<div ng-if="allegati.rubrica_aziende.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(allegati.rubrica_aziende)" ng-include="rubrica.template"></div>
+	<div ng-if="allegati.rubrica_dipendenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(allegati.rubrica_dipendenti)" ng-include="rubrica.template"></div>
+	<div ng-if="allegati.rubrica_checkups.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(allegati.rubrica_checkups)" ng-include="rubrica.template"></div>
+	<div ng-if="allegati.rubrica_filtri_allegati.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(allegati.rubrica_filtri_allegati)" ng-include="rubrica.template"></div>
+	<div flex ng-controller="filtri_app" ng-init="filtri_app(allegati)" ub-table layout="column" layout-align="start stretch" class="full-height" ng-include="'ubtable_allegati.html'"></div>
+</md-card>
+
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'allegati_toolbar.html'"
+></div>

@@ -1,0 +1,24 @@
+<md-button ng-if="logged_user.admin == '1'" class="md-icon-button" ng-click="gestione.page = 'utenti'" ng-class="{'selected': gestione.page == 'utenti'}" aria-label="utenti">
+	<md-icon md-svg-src="img/icons/person.svg"></md-icon>
+	<md-tooltip md-direction="top">Utenti</md-tooltip>
+</md-button>
+<md-button ng-if="logged_user.admin == '1'" class="md-icon-button" ng-click="gestione.page = 'aziende'" ng-class="{'selected': gestione.page == 'aziende'}" aria-label="aziende">
+	<md-icon md-svg-src="img/icons/circuit.svg"></md-icon>
+	<md-tooltip md-direction="top">Circuiti</md-tooltip>
+</md-button>
+<md-button ng-if="logged_user.admin == '1'" class="md-icon-button" ng-click="gestione.page = 'dipendenti'" ng-class="{'selected': gestione.page == 'dipendenti'}" aria-label="dipendenti">
+	<md-icon md-svg-src="img/icons/school.svg"></md-icon>
+	<md-tooltip md-direction="top">School</md-tooltip>
+</md-button>
+<!--<md-button ng-if="logged_user.admin == '1'" class="md-icon-button" ng-click="gestione.page = 'argomenti'" ng-class="{'selected': gestione.page == 'argomenti'}" aria-label="argomenti">
+	<md-icon md-svg-src="img/icons/books.svg"></md-icon>
+	<md-tooltip md-direction="top">Argomenti</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-click="gestione.page = 'azienda_argomenti'" ng-class="{'selected': gestione.page == 'azienda_argomenti'}" aria-label="azienda_argomenti">
+	<md-icon md-svg-src="img/icons/person_tie_books.svg"></md-icon>
+	<md-tooltip md-direction="top">Argomenti per azienda</md-tooltip>
+</md-button>-->
+<md-button class="md-icon-button" ng-click="gestione.page = 'formazioni'" ng-class="{'selected': gestione.page == 'formazioni'}" aria-label="formazioni">
+	<md-icon md-svg-src="img/icons/helmet.svg"></md-icon>
+	<md-tooltip md-direction="top">Eventi</md-tooltip>
+</md-button>

@@ -1,0 +1,34 @@
+<div layout="row" layout-align="start center">
+	<md-icon md-svg-icon="img/icons/circuit.svg"></md-icon>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="scadenziario.azienda"
+			md-search-text="scadenziario.azienda_search"
+			md-items="azienda in aziende.righe | filter:scadenziario.azienda_search"
+			md-item-text="azienda.az_descr"
+			md-floating-label="Circuito"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="logged_user | utente_is_utente"
+			md-selected-item-change="
+				scadenziario.dipendente && (scadenziario.dipendente = scadenziario.dipendente && scadenziario.dipendente.di_idazienda == scadenziario.azienda.az_id ? scadenziario.dipendente : undefined) ? true : false;
+				scadenziario.dipendente && (scadenziario.dipendente_search = scadenziario.dipendente && scadenziario.dipendente.di_idazienda == scadenziario.azienda.az_id ? scadenziario.dipendente_search : undefined) ? true : false;
+			"
+			md-search-text-change="
+				scadenziario.azienda = undefined;
+				scadenziario.dipendente = undefined;
+				scadenziario.dipendente_search = undefined
+			"
+			ng-disabled="!(logged_user | utente_is_utente)"
+		>
+			<md-item-template>
+				<div>{{azienda.az_descr}}</div>
+				<md-not-found>Non sono state trovati circuiti per "{{scadenziario.azienda_search}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+	<md-button ng-if="scadenziario.azienda" class="md-icon-button" ng-click="scadenziario.fl_anagrafica_azienda_open = !scadenziario.fl_anagrafica_azienda_open" aria-label="toggle">
+		<md-icon md-svg-icon="img/icons/{{scadenziario.fl_anagrafica_azienda_open ? 'arrow_up' : 'arrow_down'}}.svg"></md-icon>
+		<md-tooltip md-direction="bottom">{{scadenziario.fl_anagrafica_azienda_open ? 'Comprimi' : 'Espandi'}}</md-tooltip>
+	</md-button>
+</div>

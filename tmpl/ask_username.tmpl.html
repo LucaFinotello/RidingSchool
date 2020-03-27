@@ -1,0 +1,9 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<md-input-container class="md-block">
+			<label md-colors="{color: (dialog.username | utente_username_is_valid) ? 'grey-900' : 'red'}">Username {{dialog.username && !(dialog.username | utente_username_is_valid) ? 'già in uso' : ''}}</label>
+			<input type="text" ng-model="dialog.username" ng-pattern="/^[a-zA-Z0-9]*$/" ng-required="true" />
+			<input type="hidden" ng-model="undefinedmodel" ng-required="true" ng-if="dialog.username && !(dialog.username | utente_username_is_valid)" />
+		</md-input-container>
+	</div>
+</md-content>

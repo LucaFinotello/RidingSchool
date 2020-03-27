@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon"/>
+		<title>UBPrint</title>
+
+		<!-- include cordova
+		<script src="../cordova.js"></script> -->
+
+		<!-- include angular -->
+		<script src="../../../lib/angular-1.7.5/angular.min.js"></script>
+		<script src="../../../lib/angular-1.7.5/angular-animate.min.js"></script>
+		<script src="../../../lib/angular-1.7.5/angular-aria.min.js"></script>
+		<script src="../../../lib/angular-1.7.5/angular-messages.min.js"></script>
+		<script src="../../../lib/angular-1.7.5/i18n/angular-locale_it-it.js"></script>
+		<script src="../../../lib/angular-1.7.5/angular-sanitize.min.js"></script>
+		<script src="../../../lib/angular-1.7.5/angular-animate.min.js"></script>
+
+		<!-- include ng-cordova -->
+		<script src="../../../lib/ng-cordova/ng-cordova.js"></script>
+
+		<!-- include ng-storage -->
+		<script src="../../../lib/ng-storage/ng-storage.min.js"></script>
+
+		<!-- include angular-material -->
+		<script src="../../../lib/angular-material-1.1.10/angular-material.min.js"></script>
+		<link rel="stylesheet" href="../../../lib/angular-material-1.1.10/angular-material.min.css">
+	</head>
+
+	<body class="ubprint" ng-app="ubapp" layout="column" layout-align="start stretch" ng-controller="main" ng-cloak>
+		<div ng-controller="ubprint" ng-include="template" layout="column" layout-align="start stretch" layout-padding>
+			{{template}}
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript" src="../../../config/config.js"></script>
+<script type="text/javascript" src="../../../js/main.js"></script>
+<script type="text/javascript" src="../../../js/login.js"></script>
+<script type="text/javascript" src="../../../js/rubrica.js"></script>
+<script type="text/javascript" src="../../../js/filtri_app.js"></script>
+
+<script type="text/javascript">
+	app.controller("ubprint", ["$rootScope", "$scope", function($rootScope, $scope) {
+		$scope.template = "[TEMPLATE]";
+		$scope.postdata = [POSTDATA];
+	}]);
+</script>
+
+<link href="../../../css/main.css" rel="stylesheet">
+<link href="../../../css/card.css" rel="stylesheet">
+<link href="../../../css/toolbar.css" rel="stylesheet">
+<link href="../../../css/rubrica.css" rel="stylesheet">
+<link href="../../../css/ubtable.css" rel="stylesheet">
+<link href="../../../css/block.css" rel="stylesheet">

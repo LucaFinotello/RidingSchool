@@ -1,0 +1,20 @@
+.statusbar-app {
+	background-color: #4899ea !important;
+	height: 40px;
+}
+.statusbar-app.open {
+	height: 100px;
+}
+
+.statusbar-app .md-title
+,.statusbar-app .md-subhead
+,.statusbar-app .md-body-1
+,.statusbar-app .md-caption
+,.statusbar-app .md-button md-icon
+,.statusbar-app md-icon
+,.statusbar-app input
+,.statusbar-app label
+,.statusbar-app md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label
+,.statusbar-app md-input-container:not(.md-input-invalid).md-input-has-value label {
+	color: blue;
+}

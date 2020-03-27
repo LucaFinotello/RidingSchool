@@ -1,0 +1,17 @@
+<div flex></div>
+<md-button class="md-icon-button" ng-click="anagrafica_checkup_riga(checkups.selected.righe[checkups.selected.righe.push({allegati:[], sanzioni:[], servizi:[]}) - 1], !(logged_user | utente_is_utente), logged_user | utente_is_utente, checkups.selected)" aria-label="add">
+	<md-icon md-svg-src="img/icons/add.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiungi riga</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-click="delete_checkup(checkups.selected, true)" aria-label="delete">
+	<md-icon md-svg-src="img/icons/delete.svg"></md-icon>
+	<md-tooltip md-direction="top">Elimina checkup</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-click="checkups.selected.ch_date = parseDate(checkups.selected.date).toISOString(); insert_checkup(checkups.selected);" aria-label="save">
+	<md-icon md-svg-src="img/icons/done.svg"></md-icon>
+	<md-tooltip md-direction="top">Conferma checkup</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-click="cancel_checkup(checkups.selected, !checkups.selected.disabledform)" aria-label="cancel">
+	<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+	<md-tooltip md-direction="top">Annulla checkup</md-tooltip>
+</md-button>

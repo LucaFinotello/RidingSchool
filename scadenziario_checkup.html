@@ -1,0 +1,40 @@
+<div layout="column" layout-align="start stretch" class="full-height" flex>
+	<md-card
+		ng-if="scadenziario.page == 'checkup'"
+		style="max-height: calc(50vh - 60px); overflow-y: auto"
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		ng-include="'scadenziario_checkup_testata.html'"
+	></md-card>
+	<md-card
+		ng-if="scadenziario.page == 'checkup' && scadenziario.azienda"
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		class="full-height"
+		flex
+	>
+		<div
+			layout="row"
+			layout-align="start center"
+			class="toolbar no-padding"
+			md-colors="{background: colors.secondary_toolbar}"
+			ng-include="'ubtable_checkup_toolbar.html'"
+		></div>
+
+		<div layout="row" layout-align="start start" class="full-height" flex>
+			<div
+				ng-controller="filtri_app"
+				ng-init="filtri_app(checkups.selected)"
+				ub-table
+				layout="column"
+				layout-align="start stretch"
+				class="full-height"
+				flex
+				ng-include="'ubtable_checkup.html'"
+			></div>
+		</div>
+	</md-card>
+</div>
+<md-card ng-if="checkups.rubrica_checkup_argomenti.fl_open" ng-controller="rubrica" ng-init="init_rubrica(checkups.rubrica_checkup_argomenti)" layout="column" layout-align="start stretch" class="full-height rubrica" ng-include="rubrica.template"></md-card>

@@ -1,0 +1,50 @@
+md-card {
+	position: relative;
+}
+md-card md-card-title {
+	padding: 28px 16px 0px;
+}
+md-card.closed {
+	padding: 0;
+	/*margin: 0;*/
+	max-width: 0 !important;
+}
+md-card .card-toggle {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+}
+md-card .card-toggle:not(.card-toggle-bottom) {
+	top: 15px;
+}
+md-card .card-toggle.card-toggle-bottom {
+	bottom: 15px;
+}
+md-card .card-toggle.card-toggle-right {
+	right: -25px;
+}
+md-card .card-toggle.card-toggle-right.md-mini {
+	right: -15px;
+}
+md-card .card-toggle.card-toggle-left {
+	left: -25px;
+}
+md-card .card-toggle.card-toggle-left.md-mini {
+	left: -15px;
+}
+
+md-card.full-height {
+	min-height: calc(100% - 8px);
+	max-height: calc(100% - 8px);
+}
+md-card.selected {
+	background-color: #6f6f6f;
+	color: white;
+}
+md-card.selected label
+,md-card.selected .md-input-has-value label
+,md-card.selected label.md-required:after
+,md-card.selected input
+,md-card.selected md-icon {
+	color: white;
+}

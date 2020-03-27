@@ -1,0 +1,84 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.al_date" aria-label="al_date">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/calendar.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.al_descr" aria-label="al_descr">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/allegato.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.al_note" aria-label="al_note">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/note.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell ub-table-cell-80" ng-if="model.filtri.show.al_date">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('al_date')">
+				<md-icon md-svg-src="img/icons/calendar.svg"><md-tooltip md-direction="top">Data</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('al_date') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('al_date') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.al_descr">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('al_descr')">
+				<md-icon md-svg-src="img/icons/allegato.svg"><md-tooltip md-direction="top">Descrizione</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('al_descr') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('al_descr') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.al_note">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('al_note')">
+				<md-icon md-svg-src="img/icons/note.svg"><md-tooltip md-direction="top">Note</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('al_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('al_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-60"></div>
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="allegato in model.filtered">
+		<div class="ub-table-body-row" layout="row">
+			<div class="ub-table-cell ub-table-cell-80" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.al_date">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{allegato.al_date | date:'dd/MM/yyyy HH:mm'}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.al_descr">
+				<div layout="row" layout-align="start center" layout-fill>
+					<md-icon md-svg-src="img/icons/{{allegato.al_type | file_icon}}.svg"></md-icon>
+					<div class="md-caption" md-truncate flex>{{allegato.al_descr}} ({{allegato.al_size | filesize_currency}})</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.al_note">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{allegato.al_note}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-60" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="download_file(allegato.al_path, allegato.al_descr, true)">
+						<md-icon md-svg-icon="img/icons/download.svg"></md-icon>
+						<md-tooltip md-direction="top">Download</md-tooltip>
+					</md-button>
+					<md-button class="md-icon-button" ng-if="logged_user.admin == '1'" ng-click="anagrafica_allegato(allegato)">
+						<md-icon md-svg-icon="img/icons/edit.svg"></md-icon>
+						<md-tooltip md-direction="top">Modifica</md-tooltip>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

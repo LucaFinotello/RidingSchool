@@ -1,0 +1,25 @@
+<md-button ng-if="(logged_user | utente_is_utente) && page() != 'scadenziario'" class="md-icon-button" ng-class="{'selected': adempimenti.rubrica_aziende.fl_open}" ng-click="adempimenti.toggle_rubrica(adempimenti.rubrica_aziende)">
+	<md-icon md-svg-icon="img/icons/person_tie.svg"></md-icon>
+	<md-tooltip md-direction="top">Aziende</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-class="{'selected': adempimenti.rubrica_argomenti.fl_open}" ng-click="adempimenti.toggle_rubrica(adempimenti.rubrica_argomenti)">
+	<md-icon md-svg-icon="img/icons/books.svg"></md-icon>
+	<md-tooltip md-direction="top">Argomenti</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-class="{'selected': adempimenti.rubrica_adempimenti.fl_open}" ng-click="adempimenti.toggle_rubrica(adempimenti.rubrica_adempimenti)">
+	<md-icon md-svg-icon="img/icons/book.svg"></md-icon>
+	<md-tooltip md-direction="top">Adempimenti</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-class="{'selected': adempimenti.rubrica_stati.fl_open}" ng-click="adempimenti.toggle_rubrica(adempimenti.rubrica_stati)">
+	<md-icon md-svg-icon="img/icons/priority.svg"></md-icon>
+	<md-tooltip md-direction="top">Stati</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-class="{'selected': adempimenti.rubrica_filtri_adempimenti.fl_open}" ng-click="adempimenti.toggle_rubrica(adempimenti.rubrica_filtri_adempimenti)">
+	<md-icon md-svg-icon="img/icons/filter.svg"></md-icon>
+	<md-tooltip md-direction="top">Altri filtri</md-tooltip>
+</md-button>
+<div flex></div>
+<md-button class="md-icon-button" ng-click="adempimenti.fn_filtri_set_default_filtri_app()">
+	<md-icon md-svg-icon="img/icons/broom.svg"></md-icon>
+	<md-tooltip md-direction="top">Pulisci filtri</md-tooltip>
+</md-button>

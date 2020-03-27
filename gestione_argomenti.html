@@ -1,0 +1,119 @@
+<div layout="row" layout-align="start center">
+	<md-button class="md-icon-button" ng-click="gestione.argomento && anagrafica_argomento(gestione.argomento)" aria-label="edit">
+		<md-icon md-svg-icon="img/icons/books.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Modifica argomento</md-tooltip>
+	</md-button>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="gestione.argomento"
+			md-search-text="gestione.search_argomento"
+			md-items="argomento in argomenti.righe | filter:search_argomento"
+			md-item-text="argomento.ar_descr"
+			md-floating-label="Argomento"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="true"
+			md-selected-item-change="gestione_clear_adempimento()"
+			md-search-text-change="gestione.argomento = undefined; gestione_clear_adempimento()"
+		>
+			<md-item-template>
+				<div>{{argomento.ar_id}} - {{argomento.ar_descr}}</div>
+				<md-not-found>Non sono stati trovati argomenti per "{{search_argomento}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+	<md-button class="md-icon-button" ng-click="gestione_insert_argomento()" aria-label="add">
+		<md-icon md-svg-icon="img/icons/add.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Aggiungi argomento</md-tooltip>
+	</md-button>
+</div>
+
+<div layout="row" layout-align="start center" ng-if="gestione.argomento">
+	<md-button class="md-icon-button" ng-click="gestione.adempimento && anagrafica_adempimento(gestione.adempimento, gestione.argomento)" aria-label="edit">
+		<md-icon md-svg-icon="img/icons/book.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Modifica adempimento</md-tooltip>
+	</md-button>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="gestione.adempimento"
+			md-search-text="gestione.search_adempimento"
+			md-items="adempimento in gestione.argomento.adempimenti | filter:search_adempimento"
+			md-item-text="adempimento.ad_descr"
+			md-floating-label="Adempimento"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="true"
+			md-selected-item-change="gestione_clear_stato()"
+			md-search-text-change="gestione.adempimento = undefined"
+		>
+			<md-item-template>
+				<div>{{adempimento.ad_id}} - {{adempimento.ad_descr}}</div>
+				<md-not-found>Non sono stati trovati adempimenti per "{{search_adempimento}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+	<md-button class="md-icon-button" ng-click="gestione_insert_adempimento(undefined, gestione.argomento)" aria-label="add">
+		<md-icon md-svg-icon="img/icons/add.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Aggiungi adempimento</md-tooltip>
+	</md-button>
+</div>
+
+<div layout="row" layout-align="start center" ng-if="gestione.adempimento">
+	<md-button class="md-icon-button" ng-click="gestione.stato && anagrafica_stato(gestione.stato, gestione.adempimento)" aria-label="edit">
+		<md-icon md-svg-icon="img/icons/priority.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Stato</md-tooltip>
+	</md-button>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="gestione.stato"
+			md-search-text="gestione.search_stato"
+			md-items="stato in gestione.adempimento.stati | filter:search_stato"
+			md-item-text="stato.st_descr"
+			md-floating-label="Stato"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="true"
+			md-selected-item-change="gestione_clear_sanzione()"
+			md-search-text-change="gestione.stato = undefined"
+		>
+			<md-item-template>
+				<div>{{stato.st_id}} - {{stato.st_descr}}</div>
+				<md-not-found>Non sono stati trovati stati per "{{search_stato}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+	<md-button class="md-icon-button" ng-click="gestione_insert_stato(undefined, gestione.adempimento)" aria-label="add">
+		<md-icon md-svg-icon="img/icons/add.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Aggiungi stato</md-tooltip>
+	</md-button>
+</div>
+
+<div layout="row" layout-align="start center" ng-if="gestione.stato">
+	<md-button class="md-icon-button" ng-click="gestione.sanzione && anagrafica_sanzione(gestione.sanzione, gestione.stato)" aria-label="edit">
+		<md-icon md-svg-icon="img/icons/money.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Sanzione</md-tooltip>
+	</md-button>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="gestione.sanzione"
+			md-search-text="gestione.search_sanzione"
+			md-items="sanzione in gestione.stato.sanzioni | filter:search_sanzione"
+			md-item-text="sanzione.sa_descr"
+			md-floating-label="Sanzione"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="true"
+			md-selected-item-change=""
+			md-search-text-change="gestione.sanzione = undefined"
+		>
+			<md-item-template>
+				<div>{{sanzione.sa_id}} - {{sanzione.sa_descr}}</div>
+				<md-not-found>Non sono state trovate sanzioni per "{{search_sanzione}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+	<md-button class="md-icon-button" ng-click="gestione_insert_sanzione(undefined, gestione.stato)" aria-label="add">
+		<md-icon md-svg-icon="img/icons/add.svg"></md-icon>
+		<md-tooltip md-direction="bottom">Aggiungi sanzione</md-tooltip>
+	</md-button>
+</div>

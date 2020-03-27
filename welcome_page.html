@@ -1,0 +1,22 @@
+<div flex class="welcome-item" ng-if="gestione.moduli.scadenziario && logged_user.fl_scadenziario == '1'" ng-click="page('scadenziario')" layout="row" layout-align="center center">
+	<md-icon flex class="no-padding full-height" md-svg-icon="img/icons/pista.svg"></md-icon>
+	<div flex class="md-display-1" md-truncate>Agenda Pista</div>
+</div>
+
+<md-divider ng-if="gestione.moduli.allegati && logged_user.fl_allegati == '1'" ></md-divider>
+<div flex class="welcome-item" ng-if="gestione.moduli.allegati && logged_user.fl_allegati == '1'" ng-click="page('allegati')" layout="row" layout-align="center center">
+	<md-icon flex class="no-padding full-height" md-svg-icon="img/icons/allegato.svg"></md-icon>
+	<div flex class="md-display-1" md-truncate>Allegati</div>
+</div>
+
+<md-divider ng-if="gestione.moduli.report && logged_user.fl_report == '1'" ></md-divider>
+<div flex class="welcome-item" ng-if="gestione.moduli.report && logged_user.fl_report == '1'" ng-click="page('report')" layout="row" layout-align="center center">
+	<md-icon flex class="no-padding full-height" md-svg-icon="img/icons/school.svg"></md-icon>
+	<div flex class="md-display-1" md-truncate>School</div>
+</div>
+
+<md-divider ng-if="gestione.moduli.gestione && logged_user.fl_gestione == '1'" ></md-divider>
+<div flex class="welcome-item" ng-if="gestione.moduli.gestione && logged_user.fl_gestione == '1'" ng-click="page('gestione')" layout="row" layout-align="center center">
+	<md-icon flex class="no-padding full-height" md-svg-icon="img/icons/settings.svg"></md-icon>
+	<div flex class="md-display-1" md-truncate>Gestione</div>
+</div>

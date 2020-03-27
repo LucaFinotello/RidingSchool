@@ -1,0 +1,70 @@
+<div md-colors="{'background': 'grey-400-1'}">
+	<div layout="column" layout-align="start stretch">
+		<div layout="row" layout-align="space-between center" layout-padding layout-wrap>
+			<div class="md-display-2" flex md-truncate>Dipendenti</div>
+			<div class="md-title">{{postdata.date | date:'dd/MM/yyyy HH:mm'}}</div>
+		</div>
+		<md-divider class="md-body-2" layout-margin></md-divider>
+		<span class="md-body-2">Filtri:</span>
+		<div layout="row" layout-align="start start" layout-padding layout-wrap>
+			<div ng-if="postdata.filtri.search" layout="column" layout-align="start stretch" style="margin: 0 8px">
+				<div class="md-body-2" md-truncate>Cerca:</div>
+				<div class="md-body-1" md-truncate>{{postdata.filtri.search}}</div>
+			</div>
+			<div ng-if="get_valid_keys(postdata.filtri.aziende).length > 0" layout="column" layout-align="start stretch" style="margin: 0 8px">
+				<md-icon md-svg-src="../../../img/icons/person_tie.svg"></md-icon>
+				<div class="md-body-1" md-truncate ng-repeat="filter_key in get_valid_keys(postdata.filtri.aziende)">{{filter_key}} - {{postdata.filtri.aziende[filter_key]}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ub-table layout="column" layout-align="start stretch">
+	<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+		<div layout="row" class="ub-table-head">
+			<div class="ub-table-cell" flex ng-if="postdata.filtri.show.di_idazienda">
+				<div layout="row" layout-align="center center">
+					<md-icon md-svg-src="../../../img/icons/person_tie.svg"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'di_idazienda'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'di_idazienda'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'di_idazienda'}).length > 0 && (postdata.filtri.sorting | filter:{property:'di_idazienda'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-if="postdata.filtri.show.di_descr">
+				<div layout="row" layout-align="center center">
+					<md-icon md-svg-src="../../../img/icons/person_helm.svg"><md-tooltip md-direction="top">Dipendente</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'di_descr'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'di_descr'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'di_descr'}).length > 0 && (postdata.filtri.sorting | filter:{property:'di_descr'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-if="postdata.filtri.show.di_note">
+				<div layout="row" layout-align="center center">
+					<md-icon md-svg-src="../../../img/icons/note.svg"><md-tooltip md-direction="top">Note</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'di_note'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'di_note'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'di_note'}).length > 0 && (postdata.filtri.sorting | filter:{property:'di_note'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div flex layout="column" class="ub-table-body">
+		<div ng-repeat="dipendente in postdata.righe">
+			<div class="ub-table-body-row" layout="row">
+				<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.di_idazienda">
+					<div layout="row" layout-align="start center" layout-fill>
+						<div class="md-caption" md-truncate>{{dipendente.az_descr}}</div>
+					</div>
+				</div>
+				<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.di_descr">
+					<div layout="row" layout-align="start center" layout-fill>
+						<div class="md-caption" md-truncate>{{dipendente.di_descr}}</div>
+					</div>
+				</div>
+				<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.di_note">
+					<div layout="row" layout-align="start center" layout-fill>
+						<div class="md-caption" md-truncate>{{dipendente.di_note}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

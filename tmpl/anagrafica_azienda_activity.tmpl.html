@@ -1,0 +1,149 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-input-container flex>
+				<label>Data</label>
+				<md-datepicker ng-model="dialog.date" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform" ng-required="true"></md-datepicker>
+			</md-input-container>
+
+			<md-input-container flex>
+				<label>Ora</label>
+				<input type="time" ng-model="dialog.date" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform" ng-required="true" />
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/circuit.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.azienda_activity.azienda"
+					md-search-text="dialog.azienda_search"
+					md-items="azienda in dialog.aziende.righe | filter:dialog.azienda_search"
+					md-item-text="azienda.az_descr"
+					md-floating-label="Circuito"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.azienda_activity.aa_idazienda = azienda.az_id"
+					md-search-text-change="dialog.azienda_activity.aa_idazienda = undefined; dialog.azienda_activity.azienda = undefined"
+					ng-disabled="dialog.disabledform"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{azienda.az_descr}}</div>
+						<md-not-found>Non sono state trovate aziende per "{{dialog.azienda_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<!--<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/crm.svg"></md-icon>
+			<md-input-container flex>
+				<label>Tipo</label>
+				<input type="text" ng-model="dialog.azienda_activity.aa_type" ng-readonly="dialog.disabledform" ng-required="true" />
+			</md-input-container>
+		</div>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/crm.svg"></md-icon>
+			<md-input-container flex>
+				<label>Descrizione</label>
+				<input type="text" ng-model="dialog.azienda_activity.aa_descr" ng-readonly="dialog.disabledform" ng-required="true" />
+			</md-input-container>
+		</div>-->
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.azienda_activity.utente"
+					md-search-text="dialog.utente_search"
+					md-items="utente in dialog.utenti.righe | utenti_utenti | filter:dialog.utente_search"
+					md-item-text="utente.cognome + ' ' + utente.nome"
+					md-floating-label="Utente"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.azienda_activity.aa_idutente = utente.username"
+					md-search-text-change="dialog.azienda_activity.aa_idutente = undefined; dialog.azienda_activity.utente = undefined"
+					ng-disabled="dialog.disabledform || dialog.logged_user.admin != '1'"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{utente.cognome}} {{utente.nome}} - ({{utente.username}})</div>
+						<md-not-found>Non sono stati trovati utenti per "{{dialog.utente_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<!--<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/timelapse.svg"></md-icon>
+			<md-input-container flex>
+				<label>Minuti</label>
+				<input type="number" step="1" ng-model="dialog.azienda_activity.aa_qta" ng-readonly="dialog.disabledform" ng-required="true" />
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note</label>
+				<textarea rows="3" ng-model="dialog.azienda_activity.af_note" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>-->
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Sospensioni Ant</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_ant" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Precarico</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_pre_ant" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Mono</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_post" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Precarico</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_pre_post" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Pres. Ant</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_pres_ant" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="any"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Pres. Post</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_pres_post" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="any"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Temperatura C°</label>
+				<input type="number" ng-model="dialog.azienda_activity.aa_gradi" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="40" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/pista.svg"></md-icon>
+			<md-input-container flex>
+				<label>Moto</label>
+				<input type="text" ng-model="dialog.azienda_activity.aa_moto" ng-required="true"/>
+			</md-input-container>
+		</div>
+	</div>
+</md-content>

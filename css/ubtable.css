@@ -1,0 +1,110 @@
+.ub-table {
+	position: relative;
+	color: blue;
+}
+
+.ub-table-head {
+	border-bottom: 3px solid #BBB;
+}
+body:not(.ubprint) .ub-table-head {
+	overflow-y: scroll !important;
+	overflow-x: auto;
+}
+
+.ub-table-head
+,.ub-table-body-row {
+	border-left: 3px solid transparent;
+}
+
+.ub-table-body {
+	min-height: 100%;
+	max-height: 100%;
+}
+body:not(.ubprint) .ub-table-body {
+	overflow-y: scroll !important;
+	overflow-x: hidden !important;
+}
+.ub-table-body-row {
+	position: relative;
+}
+.ub-table-body-row .striped {
+	background-color: #DDD;
+}
+
+.ub-table-body-row:hover .ub-table-cell, .ub-table-body-row:hover .ub-table-cell.striped {
+	background-color: #EEE;
+}
+
+.ub-table-cell {
+	/*padding: 8px;*/
+	padding: 4px;
+	word-wrap: break-word;
+	overflow-x: hidden !important;
+}
+.ub-table-body-row .ub-table-cell:not(:last-child) {
+	border-right: 1px dotted #BBB;
+}
+
+.ub-table-cell
+,.ub-table-cell[flex] {
+	min-width: 150px;
+}
+.ub-table-cell:not([flex]) {
+	max-width: 150px;
+}
+.ub-table-cell-33
+,.ub-table-cell-33[flex] {
+	min-width: 50px;
+}
+.ub-table-cell-33:not([flex]) {
+	max-width: 50px;
+}
+.ub-table-cell-50
+,.ub-table-cell-50[flex] {
+	min-width: 75px;
+}
+.ub-table-cell-50:not([flex]) {
+	max-width: 75px;
+}
+.ub-table-cell-60
+,.ub-table-cell-60[flex] {
+	min-width: 90px;
+}
+.ub-table-cell-60:not([flex]) {
+	max-width: 90px;
+}
+.ub-table-cell-70
+,.ub-table-cell-70[flex] {
+	min-width: 105px;
+}
+.ub-table-cell-70:not([flex]) {
+	max-width: 105px;
+}
+.ub-table-cell-80
+,.ub-table-cell-80[flex] {
+	min-width: 120px;
+}
+.ub-table-cell-80:not([flex]) {
+	max-width: 120px;
+}
+.ub-table-cell-120
+,.ub-table-cell-120[flex] {
+	min-width: 180px;
+}
+.ub-table-cell-120:not([flex]) {
+	max-width: 180px;
+}
+.ub-table-cell-150
+,.ub-table-cell-150[flex] {
+	min-width: 225px;
+}
+.ub-table-cell-150:not([flex]) {
+	max-width: 225px;
+}
+.ub-table-cell-200
+,.ub-table-cell-200[flex] {
+	min-width: 300px;
+}
+.ub-table-cell-200:not([flex]) {
+	max-width: 300px;
+}

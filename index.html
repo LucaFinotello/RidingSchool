@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+		<title>RidingSchool</title>
+
+		<!-- include cordova -->
+		<script src="cordova.js"></script>
+
+		<!-- include angular -->
+		<script src="lib/angular-1.7.5/angular.min.js"></script>
+		<script src="lib/angular-1.7.5/angular-animate.min.js"></script>
+		<script src="lib/angular-1.7.5/angular-aria.min.js"></script>
+		<script src="lib/angular-1.7.5/angular-messages.min.js"></script>
+		<script src="lib/angular-1.7.5/i18n/angular-locale_it-it.js"></script>
+		<script src="lib/angular-1.7.5/angular-sanitize.min.js"></script>
+		<script src="lib/angular-1.7.5/angular-animate.min.js"></script>
+
+		<!-- include inic-native
+		<script src="lib/ionic-native/ionic.native.min.js"></script> -->
+
+		<!-- include inic-native -->
+		<script src="lib/ng-cordova/ng-cordova.js"></script>
+
+		<!-- include ng-storage -->
+		<script src="lib/ng-storage/ng-storage.min.js"></script>
+
+		<!-- include angular-material -->
+		<script src="lib/angular-material-1.1.10/angular-material.min.js"></script>
+		<link rel="stylesheet" href="lib/angular-material-1.1.10/angular-material.min.css">
+	</head>
+
+	<body ng-app="ubapp" layout="column" layout-align="start stretch" ng-controller="main" ng-cloak>
+		<div ng-if="!logged_user" layout="column" layout-align="start center" flex class="full-height" ng-controller="login" ng-init="login_controlla()" ng-include="'login.html'"></div>
+		<div ng-if="logged_user" layout="column" layout-align="start stretch" flex class="full-height" ng-init="page(welcome(logged_user))">
+
+			<div md-colors="{background: colors.primary_toolbar}" layout="row" layout-align="start center" class="toolbar" ng-include="'menu.html'" ng-cloak></div>
+
+			<div ng-controller="utenti"						ng-init="select_utenti()"																></div>
+			<div ng-controller="gestione"					ng-init="gestione.page = logged_user.admin == '1' ? 'utenti' : 'azienda_argomenti'"		></div>
+			<div ng-controller="scadenziario"				ng-init="init_scadenziario()"															></div>
+			<div ng-controller="aziende_tipi"				ng-init="select_aziende_tipi()"															></div>
+			<div ng-controller="aziende"					ng-init="select_aziende()"																></div>
+			<div ng-controller="aziende_activities"			ng-init="select_aziende_activities()"													></div>
+			<div ng-controller="dipendenti"					ng-init="select_dipendenti()"															></div>
+			<div ng-controller="argomenti"					ng-init="select_argomenti()"															></div>
+			<div ng-controller="aziende_argomenti"			ng-init="select_aziende_argomenti()"													></div>
+			<div ng-controller="adempimenti"				ng-init="select_lastest_adempimenti()"													></div>
+			<div ng-controller="stati"																												></div>
+			<div ng-controller="sanzioni"																											></div>
+			<div ng-controller="formazioni"					ng-init="select_formazioni()"															></div>
+			<div ng-controller="aziende_formazioni"			ng-init="select_aziende_formazioni()"													></div>
+			<div ng-controller="dipendenti_formazioni"		ng-init="select_lastest_dipendenti_formazioni()"										></div>
+			<div ng-controller="checkups"					ng-init="select_checkups()"																></div>
+			<div ng-controller="allegati"					ng-init="select_allegati()"																></div>
+			<div ng-controller="allegati_utenti"			ng-init="select_allegati_utenti()"														></div>
+			<div ng-controller="allegati_aziende"			ng-init="select_allegati_aziende()"														></div>
+			<div ng-controller="allegati_dipendenti"		ng-init="select_allegati_dipendenti()"													></div>
+			<div ng-controller="allegati_checkups"			ng-init="select_allegati_checkups()"													></div>
+			<div ng-controller="allegati_checkups_righe"	ng-init="select_allegati_checkups_righe()"												></div>
+			<div ng-controller="report"						ng-init="report.page = 'aziende'"														></div>
+			<div ng-controller="report_aziende"																										></div>
+			<div ng-controller="report_dipendenti"																									></div>
+
+			<div
+				ng-if="page()=='welcome_page'"
+				ng-include="'welcome_page.html'"
+				layout="column" layout-align="start stretch" class="full-height" flex layout-padding
+			></div>
+
+			<div
+				ng-if="gestione.moduli.scadenziario && page()=='scadenziario'"
+				ng-include="'scadenziario.html'"
+				layout="column" layout-align="start stretch" class="full-height" flex
+			></div>
+
+			<div
+				ng-if="gestione.moduli.allegati && page()=='allegati'"
+				ng-include="'allegati.html'"
+				layout="column" layout-align="start stretch" class="full-height" flex
+			></div>
+
+			<div
+				ng-if="gestione.moduli.report && page()=='report'"
+				ng-include="'report.html'"
+				layout="column" layout-align="start stretch" class="full-height" flex
+			></div>
+
+			<div
+				ng-if="gestione.moduli.gestione && page()=='gestione'"
+				ng-include="'gestione.html'"
+				layout="column" layout-align="start stretch" class="full-height" flex
+			></div>
+		</div>
+
+		<div ng-show="ajax_loading" md-colors="{background: 'grey-700-0.5'}" class="ub-absolute full-height" layout="row" layout-align="center center" flex layout-fill>
+			<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript" src="config/config.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/rubrica.js"></script>
+<script type="text/javascript" src="js/filtri_app.js"></script>
+
+<script type="text/javascript" src="js/utenti.js"></script>
+<script type="text/javascript" src="js/gestione.js"></script>
+<script type="text/javascript" src="js/scadenziario.js"></script>
+<script type="text/javascript" src="js/aziende_tipi.js"></script>
+<script type="text/javascript" src="js/aziende.js"></script>
+<script type="text/javascript" src="js/aziende_activities.js"></script>
+<script type="text/javascript" src="js/dipendenti.js"></script>
+<script type="text/javascript" src="js/argomenti.js"></script>
+<script type="text/javascript" src="js/aziende_argomenti.js"></script>
+<script type="text/javascript" src="js/adempimenti.js"></script>
+<script type="text/javascript" src="js/stati.js"></script>
+<script type="text/javascript" src="js/sanzioni.js"></script>
+<script type="text/javascript" src="js/formazioni.js"></script>
+<script type="text/javascript" src="js/aziende_formazioni.js"></script>
+<script type="text/javascript" src="js/dipendenti_formazioni.js"></script>
+<script type="text/javascript" src="js/checkups.js"></script>
+<script type="text/javascript" src="js/allegati.js"></script>
+<script type="text/javascript" src="js/allegati_utenti.js"></script>
+<script type="text/javascript" src="js/allegati_aziende.js"></script>
+<script type="text/javascript" src="js/allegati_dipendenti.js"></script>
+<script type="text/javascript" src="js/allegati_checkups.js"></script>
+<script type="text/javascript" src="js/allegati_checkups_righe.js"></script>
+<script type="text/javascript" src="js/report.js"></script>
+<script type="text/javascript" src="js/report_aziende.js"></script>
+<script type="text/javascript" src="js/report_dipendenti.js"></script>
+
+<link href="css/main.css" rel="stylesheet">
+<link href="css/card.css" rel="stylesheet">
+<link href="css/toolbar.css" rel="stylesheet">
+<link href="css/dialog.css" rel="stylesheet">
+<link href="css/rubrica.css" rel="stylesheet">
+<link href="css/ubtable.css" rel="stylesheet">
+<link href="css/block.css" rel="stylesheet">
+<link href="css/login.css" rel="stylesheet">
+<link href="css/welcome_page.css" rel="stylesheet">

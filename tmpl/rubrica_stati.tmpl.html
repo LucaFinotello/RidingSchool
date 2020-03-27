@@ -1,0 +1,42 @@
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="start center">
+		<md-input-container flex>
+			<label>Cerca</label>
+			<input type="text" ng-model="rubrica.search" />
+
+			<md-button class="md-icon-button ub-suffix" ng-click="rubrica.search = undefined" ng-if="rubrica.search" aria-label="rubrica-search">
+				<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+			</md-button>
+		</md-input-container>
+
+		<md-button class="md-icon-button" ng-click="rubrica.deselect()" aria-label="deselect">
+			<md-icon md-svg-src="img/icons/deselect.svg"></md-icon>
+		</md-button>
+	</div>
+</div>
+
+<div layout="column" layout-align="start stretch" flex class="full-height" scroll="rubrica.model" layout-padding>
+	<div ng-repeat="item in rubrica.argomenti.righe | argomenti_to_adempimenti:rubrica.model.filtri | adempimenti_to_stati:rubrica.model.filtri | custom_filter:rubrica.custom_filter_fn | filter:rubrica.search | orderBy:rubrica.order_by | limitTo:rubrica.model.limit track by $index" ng-class="{'striped': $index % 2}">
+		<md-checkbox class="md-primary no-margin" ng-checked="rubrica.checked(item)" ng-click="rubrica.click(item)" aria-label="item" layout="column" layout-align="start stretch">
+			<div layout="row" ng-if="rubrica.subhead">
+				<div flex md-truncate class="md-subhead">{{rubrica.subhead(item)}}</div>
+			</div>
+			<div layout="row" ng-if="rubrica.body">
+				<div flex md-truncate class="md-body-1">{{rubrica.body(item)}}</div>
+			</div>
+			<div layout="row" ng-if="rubrica.caption">
+				<div flex md-truncate class="md-caption">{{rubrica.caption(item)}}</div>
+			</div>
+		</md-checkbox>
+	</div>
+</div>
+
+<md-list ng-if="!rubrica.checked" scroll="rubrica.model">
+	<md-list-item ng-repeat="item in rubrica.model.righe | argomenti_to_adempimenti:rubrica.model.filtri | adempimenti_to_stati:rubrica.model.filtri | custom_filter:rubrica.custom_filter_fn | filter:rubrica.search | orderBy:rubrica.order_by | limitTo:rubrica.model.limit track by $index" class="md-{{rubrica.lines}}-line" ng-class="{'striped': $index % 2}" ng-click="rubrica.click(item)">
+		<div class="md-list-item-text">
+			<div md-truncate class="md-subhead" ng-if="rubrica.subhead">{{rubrica.subhead(item)}}</div>
+			<div md-truncate class="md-body-1" ng-if="rubrica.body">{{rubrica.body(item)}}</div>
+			<div md-truncate class="md-caption" ng-if="rubrica.caption">{{rubrica.caption(item)}}</div>
+		</div>
+	</md-list-item>
+</md-list>

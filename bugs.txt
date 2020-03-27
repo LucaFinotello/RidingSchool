@@ -1,0 +1,3 @@
+- direttiva scroll: se il numero di elementi totali supera LIMIT (elementi visualizzati) ma non genera overflow del container HTML non viene generata la scroll bar e di conseguenza la tabella non � scrollabile (LIMIT rimane costante)
+- ubtable con mappe: non ordina correttamente
+- ubtable -> mostra e nascondi colonne: è cliccabile sopra il loader

@@ -1,0 +1,13 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<md-input-container>
+			<label>Descrizione</label>
+			<input type="text" ng-model="dialog.stato.st_descr" ng-readonly="dialog.disabledform" ng-required="true"/>
+		</md-input-container>
+
+		<md-input-container>
+			<label>Note</label>
+			<textarea rows="5" ng-model="dialog.stato.st_note" ng-readonly="dialog.disabledform"></textarea>
+		</md-input-container>
+	</div>
+</md-content>

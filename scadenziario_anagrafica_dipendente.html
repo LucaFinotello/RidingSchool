@@ -1,0 +1,27 @@
+<div layout="row" layout-align="start center">
+	<md-icon md-svg-icon="img/icons/person_helm.svg"></md-icon>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="scadenziario.dipendente"
+			md-search-text="scadenziario.dipendente_search"
+			md-items="dipendente in dipendenti.righe | filter:{di_idazienda: scadenziario.azienda.az_id} | filter:scadenziario.dipendente_search"
+			md-item-text="dipendente.di_descr"
+			md-floating-label="Dipendente"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="!(logged_user | utente_is_dipendente)"
+			md-selected-item-change="scadenziario.dipendente && (scadenziario.azienda = aziende.map[scadenziario.dipendente.di_idazienda])"
+			md-search-text-change="scadenziario.dipendente = undefined"
+			ng-disabled="(logged_user | utente_is_dipendente)"
+		>
+			<md-item-template>
+				<div>{{dipendente.di_id}} - {{dipendente.di_descr}}</div>
+				<md-not-found>Non sono stati trovati dipendenti per "{{scadenziario.dipendente_search}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+	<md-button ng-if="scadenziario.dipendente" class="md-icon-button" ng-click="scadenziario.fl_anagrafica_dipendente_open = !scadenziario.fl_anagrafica_dipendente_open" aria-label="toggle">
+		<md-icon md-svg-icon="img/icons/{{scadenziario.fl_anagrafica_dipendente_open ? 'arrow_up' : 'arrow_down'}}.svg"></md-icon>
+		<md-tooltip md-direction="bottom">{{scadenziario.fl_anagrafica_dipendente_open ? 'Comprimi' : 'Espandi'}}</md-tooltip>
+	</md-button>
+</div>

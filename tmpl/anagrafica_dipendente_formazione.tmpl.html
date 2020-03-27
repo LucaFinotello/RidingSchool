@@ -1,0 +1,86 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_helm.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.dipendente_formazione.dipendente"
+					md-search-text="dialog.dipendente_search"
+					md-items="dipendente in dialog.dipendenti.righe | filter:dialog.dipendente_search"
+					md-item-text="dipendente.di_descr"
+					md-floating-label="Dipendente"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.dipendente_formazione.df_iddipendente = dipendente.df_iddipendente"
+					md-search-text-change="dialog.dipendente_formazione.df_iddipendente = undefined; dialog.dipendente_formazione.dipendente = undefined"
+					ng-disabled="dialog.disabledform"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{dipendente.di_id}} - {{dipendente.di_descr}}</div>
+						<md-not-found>Non sono stati trovati dipendenti per "{{dialog.dipendente_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/school.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.dipendente_formazione.formazione"
+					md-search-text="dialog.formazione_search"
+					md-items="formazione in dialog.formazioni.righe | filter:dialog.formazione_search"
+					md-item-text="formazione.fo_descr"
+					md-floating-label="Formazione"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.dipendente_formazione.df_idformazione = formazione.fo_id"
+					md-search-text-change="dialog.dipendente_formazione.df_idformazione = undefined; dialog.dipendente_formazione.formazione = undefined"
+					ng-disabled="dialog.disabledform"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{formazione.fo_id}} - {{formazione.fo_descr}}</div>
+						<md-not-found>Non sono state trovate formazioni per "{{dialog.formazione_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/calendar_done.svg"></md-icon>
+			<md-input-container flex>
+				<label>Data esecuzione</label>
+				<md-datepicker ng-model="dialog.data_esecuzione" md-max-date="dialog.data_scadenza" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform" ng-required="true"></md-datepicker>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/calendar_priority.svg"></md-icon>
+			<md-input-container flex>
+				<label>Data scadenza</label>
+				<md-datepicker ng-model="dialog.data_scadenza" md-min-date="dialog.data_esecuzione" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform"></md-datepicker>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_school.svg"></md-icon>
+			<md-input-container flex>
+				<label>Docente</label>
+				<input type="text" ng-model="dialog.dipendente_formazione.df_docente" ng-readonly="dialog.disabledform" />
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note</label>
+				<textarea rows="3" ng-model="dialog.dipendente_formazione.df_note" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+	</div>
+</md-content>

@@ -1,0 +1,79 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.di_idazienda" aria-label="di_idazienda">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_tie.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.di_descr" aria-label="di_descr">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_helm.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.di_note" aria-label="di_note">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/note.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.di_idazienda">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('di_idazienda')">
+				<md-icon md-svg-src="img/icons/circuit.svg"><md-tooltip md-direction="top">Circuito</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('di_idazienda') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('di_idazienda') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.di_descr">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('di_descr')">
+				<md-icon md-svg-src="img/icons/person_tie.svg"><md-tooltip md-direction="top">Corsista</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('di_descr') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('di_descr') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.di_note">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('di_note')">
+				<md-icon md-svg-src="img/icons/note.svg"><md-tooltip md-direction="top">Note</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('di_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('di_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<!--<div class="ub-table-cell ub-table-cell-33"></div>-->
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="dipendente in model.filtered">
+		<div class="ub-table-body-row" layout="row" ng-click="anagrafica_dipendente(dipendente)">
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.di_idazienda">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{aziende.map[dipendente.di_idazienda].az_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.di_descr">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{dipendente.di_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.di_note">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{dipendente.di_note}}</div>
+				</div>
+			</div>
+			<!--<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="anagrafica_dipendente(dipendente)">
+						<md-icon md-svg-icon="img/icons/edit.svg"></md-icon>
+						<md-tooltip md-direction="top">Modifica</md-tooltip>
+					</md-button>
+				</div>
+			</div>-->
+		</div>
+	</div>
+</div>

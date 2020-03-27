@@ -1,0 +1,11 @@
+.rubrica {
+	min-width: 250px;
+}
+.rubrica.rubrica-left {
+	border-right: 3px solid #BBB;
+	margin-right: 4px;
+}
+.rubrica.rubrica-right {
+	border-left: 3px solid #BBB;
+	margin-left: 4px;
+}

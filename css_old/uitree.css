@@ -1,0 +1,22 @@
+*[ui-tree] {
+	overflow: auto;
+}
+
+*[ui-tree] .nodo
+,.fake-ui-tree .nodo {
+	background-color: skyblue;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 8px;
+	padding: 4px;
+}
+
+*[ui-tree] .nodo.item
+,.fake-ui-tree .nodo.item {
+	background-color: tan;
+}
+
+*[ui-tree] .nodo.selected
+,.fake-ui-tree .nodo.selected {
+	background-color: lightgrey;
+}

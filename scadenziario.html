@@ -1,0 +1,165 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="scadenziario.page != 'checkup' && (!(logged_user | utente_is_dipendente) || scadenziario.azienda)"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	ng-include="'scadenziario_anagrafica_azienda.html'"
+></md-card>
+
+<md-card
+	ng-if="scadenziario.page == 'dipendenti_formazioni'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	ng-include="'scadenziario_anagrafica_dipendente.html'"
+></md-card>
+
+<div
+	ng-if="scadenziario.page == 'checkup'"
+	layout="row"
+	layout-align="start stretch"
+	flex
+	class="full-height"
+	ng-include="'scadenziario_checkup.html'"
+></div>
+<div
+	ng-if="scadenziario.page == 'checkup' && scadenziario.azienda"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_checkup_toolbar.html'"
+></div>
+
+<!--<md-card
+	ng-if="scadenziario.page == 'checkups' && scadenziario.azienda"
+	layout="column"
+	layout-align="start stretch"
+	flex
+	class="full-height"
+>
+	<div
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		flex
+		class="full-height"
+		ng-include="'scadenziario_checkups.html'"
+	></div>
+</md-card>
+<div
+	ng-if="scadenziario.page == 'checkups' && scadenziario.azienda"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_checkups_toolbar.html'"
+></div>-->
+
+<md-card
+	ng-if="scadenziario.page == 'adempimenti' && scadenziario.azienda"
+	layout="column"
+	layout-align="start stretch"
+	flex
+	class="full-height"
+>
+	<div
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		flex
+		class="full-height"
+		ng-include="'scadenziario_adempimenti.html'"
+	></div>
+</md-card>
+<div
+	ng-if="scadenziario.page == 'adempimenti' && scadenziario.azienda"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_adempimenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="scadenziario.page == 'dipendenti_formazioni' && (scadenziario.azienda || scadenziario.dipendente)"
+	layout="column"
+	layout-align="start stretch"
+	flex
+	class="full-height"
+>
+	<div
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		flex
+		class="full-height"
+		ng-include="'scadenziario_dipendenti_formazioni.html'"
+	></div>
+</md-card>
+<div
+	ng-if="scadenziario.page == 'dipendenti_formazioni' && (scadenziario.azienda || scadenziario.dipendente)"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_dipendenti_formazioni_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="scadenziario.page == 'school_calendar' && scadenziario.azienda"
+	layout="column"
+	layout-align="start stretch"
+	flex
+	class="full-height"
+>
+	<div
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		flex
+		class="full-height"
+		ng-include="'scadenziario_school_calendar.html'"
+	></div>
+</md-card>
+<div
+	ng-if="scadenziario.page == 'school_calendar' && scadenziario.azienda"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_school_calendar_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="scadenziario.page == 'crm' && scadenziario.azienda"
+	layout="column"
+	layout-align="start stretch"
+	flex
+	class="full-height"
+>
+	<div
+		layout="column"
+		layout-align="start stretch"
+		layout-padding
+		flex
+		class="full-height"
+		ng-include="'scadenziario_crm.html'"
+	></div>
+</md-card>
+<div
+	ng-if="scadenziario.page == 'crm' && scadenziario.azienda"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'scadenziario_crm_toolbar.html'"
+></div>

@@ -1,0 +1,125 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_tie.svg" ng-if="dialog.utente | utente_is_azienda"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+			<md-icon md-svg-src="img/icons/person_helm.svg" ng-if="dialog.utente | utente_is_dipendente"><md-tooltip md-direction="top">Dipendente</md-tooltip></md-icon>
+			<md-icon md-svg-src="img/icons/person.svg" ng-if="dialog.utente | utente_is_utente"><md-tooltip md-direction="top">Utente</md-tooltip></md-icon>
+			<md-input-container flex>
+				<label>Username</label>
+				<input type="text" ng-model="dialog.utente.username" ng-readonly="true" ng-required="true"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Cognome</label>
+				<input type="text" ng-model="dialog.utente.cognome" ng-readonly="dialog.disabledform"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Nome</label>
+				<input type="text" ng-model="dialog.utente.nome" ng-readonly="dialog.disabledform"/>
+			</md-input-container>
+		</div>
+
+		<!--<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_tie.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.utente.azienda"
+					md-search-text="dialog.azienda_search"
+					md-items="azienda in dialog.aziende.righe | filter:dialog.azienda_search"
+					md-item-text="azienda.az_descr"
+					md-floating-label="Azienda"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.utente.idazienda = azienda.az_id; dialog.utente.iddipendente = undefined; dialog.utente.dipendente = undefined; dialog.dipendente_search = undefined"
+					md-search-text-change="dialog.utente.idazienda = undefined; dialog.utente.azienda = undefined; dialog.utente.iddipendente = undefined; dialog.utente.dipendente = undefined; dialog.dipendente_search = undefined"
+					ng-disabled="dialog.disabledform"
+				>
+					<md-item-template>
+						<div>{{azienda.az_id}} - {{azienda.az_descr}}</div>
+						<md-not-found>Non sono state trovate aziende per "{{dialog.azienda_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_helm.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.utente.dipendente"
+					md-search-text="dialog.dipendente_search"
+					md-items="dipendente in dialog.dipendenti.righe | filter:{di_idazienda: dialog.utente.idazienda} | filter:dialog.dipendente_search"
+					md-item-text="dipendente.di_descr"
+					md-floating-label="Dipendente"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.utente.iddipendente = dipendente.di_id"
+					md-search-text-change="dialog.utente.iddipendente = undefined; dialog.utente.dipendente = undefined;"
+					ng-disabled="dialog.disabledform"
+				>
+					<md-item-template>
+						<div>{{dipendente.di_id}} - {{dipendente.di_descr}}</div>
+						<md-not-found>Non sono stati trovati dipendenti per "{{dialog.dipendente_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>-->
+
+		<div layout="row" layout-align="space-around center" layout-padding>
+			<md-button class="md-icon-button" ng-if="dialog.logged_user.admin == '1' && (dialog.utente | utente_is_utente)" ng-class="{'selected': dialog.utente.admin == '1'}" ng-click="dialog.utente.admin = dialog.utente.admin == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/face.svg"></md-icon>
+				<md-tooltip md-direction="top">Admin</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-if="dialog.moduli.scadenziario && dialog.logged_user.fl_scadenziario == '1'" ng-class="{'selected': dialog.utente.fl_scadenziario == '1'}" ng-click="dialog.utente.fl_scadenziario = dialog.utente.fl_scadenziario == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/pista.svg"></md-icon>
+				<md-tooltip md-direction="top">Agenda pilota</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-if="dialog.moduli.allegati && dialog.logged_user.fl_allegati == '1'" ng-class="{'selected': dialog.utente.fl_allegati == '1'}" ng-click="dialog.utente.fl_allegati = dialog.utente.fl_allegati == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/allegato.svg"></md-icon>
+				<md-tooltip md-direction="top">Allegati</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-if="dialog.moduli.report && dialog.logged_user.fl_report == '1'" ng-class="{'selected': dialog.utente.fl_report == '1'}" ng-click="dialog.utente.fl_report = dialog.utente.fl_report == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/school.svg"></md-icon>
+				<md-tooltip md-direction="top">School</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-if="dialog.moduli.gestione && dialog.logged_user.fl_gestione == '1' && (dialog.utente | utente_is_utente)" ng-class="{'selected': dialog.utente.fl_gestione == '1'}" ng-click="dialog.utente.fl_gestione = dialog.utente.fl_gestione == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/settings.svg"></md-icon>
+				<md-tooltip md-direction="top">Gestione</md-tooltip>
+			</md-button>
+		</div>
+
+		<!-- GESTIONE CHIAVI
+		<div layout="row" layout-align="space-between center">
+			<div flex class="md-title"><md-icon md-svg-src="img/icons/tag.svg"></md-icon> Chiavi dell'utente</div>
+			<md-button ng-if="!dialog.disabledform" class="md-icon-button" ng-click="dialog.utente.chiavi.push({uc_idutente: dialog.utente.username, fl_new: true})">
+				<md-icon md-svg-src="img/icons/add.svg"></md-icon>
+				<md-tooltip md-direction="top">Aggiungi</md-tooltip>
+			</md-button>
+		</div>
+		<div layout="column" layout-align="start stretch" ng-repeat="chiave in dialog.utente.chiavi">
+			<div layout="row" layout-align="space-between center">
+				<md-input-container flex>
+					<label md-colors="{color: (chiave | utente_chiave_is_valid) ? 'grey-900' : 'red'}">Chiave {{$index + 1}} {{chiave.uc_chiave && !(chiave | utente_chiave_is_valid) ? 'già in uso' : ''}}</label>
+					<input type="{{chiave.fl_show_password || chiave.fl_new ? 'text' : 'password'}}" ng-model="chiave.uc_chiave" ng-readonly="!chiave.fl_new" ng-required="true" />
+					<input ng-if="!(chiave | utente_chiave_is_valid)" type="hidden" ng-model="undefinedmodel" ng-required="true" />
+				</md-input-container>
+				<md-button ng-if="!dialog.disabledform" class="md-icon-button" ng-click="dialog.splice(dialog.utente.chiavi, chiave, true, 'Sicuro di voler eliminare la chiave?')">
+					<md-icon md-svg-src="img/icons/delete.svg"></md-icon>
+					<md-tooltip md-direction="top">Elimina</md-tooltip>
+				</md-button>
+				<md-button ng-if="!chiave.fl_new" class="md-icon-button" ng-click="chiave.fl_show_password = !chiave.fl_show_password">
+					<md-icon md-svg-src="img/icons/eye.svg"></md-icon>
+					<md-tooltip md-direction="top">Mostra password</md-tooltip>
+				</md-button>
+			</div>
+		</div>
+		-->
+	</div>
+</md-content>

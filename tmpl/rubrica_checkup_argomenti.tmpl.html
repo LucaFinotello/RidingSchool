@@ -1,0 +1,82 @@
+<div ng-if="page() == 'scadenziario' && scadenziario.page == 'checkup'"> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="start center" layout-padding>
+		<md-input-container flex>
+			<label>Cerca tra le righe</label>
+			<input type="text" ng-model="checkups.selected.filtri.search" />
+
+			<md-button class="md-icon-button ub-suffix" ng-click="checkups.selected.filtri.search = undefined" ng-if="checkups.selected.filtri.search" aria-label="rubrica-search">
+				<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+			</md-button>
+		</md-input-container>
+	</div>
+</div>
+
+<div ng-if="page() == 'scadenziario' && scadenziario.page == 'checkup'"> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="start center" layout-padding>
+		<md-input-container flex>
+			<md-checkbox class="md-primary" ng-model="checkups.selected.filtri.fl_show_ok">Mostra anche le righe ok</md-checkbox>
+		</md-input-container>
+	</div>
+</div>
+
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="start center" layout-padding>
+		<md-input-container flex>
+			<label>Cerca tra gli argomenti</label>
+			<input type="text" ng-model="rubrica.search" />
+
+			<md-button class="md-icon-button ub-suffix" ng-click="rubrica.search = undefined" ng-if="rubrica.search" aria-label="rubrica-search">
+				<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+			</md-button>
+		</md-input-container>
+
+		<md-button class="md-icon-button" ng-click="rubrica.deselect()" aria-label="deselect">
+			<md-icon md-svg-src="img/icons/deselect.svg"></md-icon>
+		</md-button>
+	</div>
+</div>
+
+<div layout="column" layout-align="start stretch" flex class="full-height" scroll="rubrica.model.argomenti">
+	<div ng-repeat="argomento in rubrica.model.argomenti.righe | filter:rubrica.search">
+		<div layout="column" layout-align="start stretch" md-colors="{background: (rubrica.model.righe | filter:{cr_idargomento: argomento.ar_id} | checkup_righe_ok) ? 'green' : 'orange'}">
+			<div layout-padding>
+				<div layout="row" layout-align="start center">
+					<md-checkbox class="md-primary no-margin" ng-checked="rubrica.checked(argomento)" ng-click="rubrica.click(argomento)" aria-label="argomento"></md-checkbox>
+					<div class="md-subhead" md-truncate flex>{{argomento.ar_id}} - {{argomento.ar_descr}}</div>
+				</div>
+			</div>
+			<div ng-if="rubrica.checked(argomento)"
+				ng-repeat="checkup_riga in rubrica.model.righe | filter:{cr_idargomento: argomento.ar_id}"
+				md-colors="{background: (checkup_riga | checkup_riga_ok) ? 'green' : 'orange'}"
+				ng-click="anagrafica_checkup_riga(checkup_riga, !(logged_user | utente_is_utente), logged_user | utente_is_utente, rubrica.model)"
+			>
+				<div layout="row" layout-align="start center" layout-padding>
+					<div class="md-body-1" md-truncate flex>{{checkup_riga.cr_idadempimento}} - {{(checkup_riga.cr_idadempimento | get_adempimento:argomento.ar_id).ad_descr}}</div>
+				</div>
+			</div>
+		</div>
+		<md-divider layout-margin ng-if="!$last"></md-divider>
+	</div>
+
+	<md-divider layout-margin ng-if="(rubrica.model.righe | filter:{cr_idargomento: '!'} | filter:rubrica.search).length"></md-divider>
+	<div ng-if="(rubrica.model.righe | filter:{cr_idargomento: '!'} | filter:rubrica.search).length">
+		<div layout="column" layout-align="start stretch" md-colors="{background: (rubrica.model.righe | filter:{cr_idargomento: '!'} | checkup_righe_ok) ? 'green' : 'orange'}">
+			<div layout-padding>
+				<div layout="row" layout-align="start center">
+					<md-checkbox class="md-primary no-margin" ng-checked="rubrica.checked({})" ng-click="rubrica.click({ar_descr: 'Senza argomento'})" aria-label="argomento"></md-checkbox>
+					<div class="md-subhead" md-truncate flex>Senza argomento</div>
+				</div>
+			</div>
+			<div ng-if="rubrica.checked({})"
+				ng-repeat="checkup_riga in rubrica.model.righe | filter:{cr_idargomento: '!'} | filter:rubrica.search"
+				md-colors="{background: (checkup_riga | checkup_riga_ok) ? 'green' : 'orange'}"
+				ng-click="anagrafica_checkup_riga(checkup_riga, !(logged_user | utente_is_utente), logged_user | utente_is_utente, rubrica.model)"
+			>
+				<div layout="row" layout-align="start center" layout-padding>
+					<div class="md-body-1" md-truncate flex>{{checkup_riga.cr_idadempimento}} - {{(checkup_riga.cr_idadempimento | get_adempimento:argomento.ar_id).ad_descr}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

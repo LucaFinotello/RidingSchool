@@ -1,0 +1,16 @@
+<div layout-padding flex class="md-title" ng-bind-html="dialog.title"></div>
+<md-button class="md-icon-button" ng-if="!dialog.disabledform && dialog.archiveFn" ng-click="dialog.archiveFn(dialog, cancel, true)">
+	<md-icon md-svg-src="img/icons/archive.svg" aria-label="Archivia"></md-icon>
+</md-button>
+<md-button class="md-icon-button" ng-if="!dialog.disabledform && dialog.deleteFn" ng-click="dialog.deleteFn(dialog, cancel, true)">
+	<md-icon md-svg-src="img/icons/delete.svg" aria-label="Elimina"></md-icon>
+</md-button>
+<md-button class="md-icon-button" ng-click="dialog.disabledform = false" ng-if="dialog.disabledform && dialog.editableform">
+	<md-icon md-svg-src="img/icons/edit.svg" aria-label="Modifica"></md-icon>
+</md-button>
+<md-button class="md-icon-button" ng-click="answer(dialog)" ng-if="!dialog.disabledform" ng-disabled="form.$invalid">
+	<md-icon md-svg-src="img/icons/done.svg" aria-label="Salva"></md-icon>
+</md-button>
+<md-button class="md-icon-button" ng-click="cancel(dialog)">
+	<md-icon md-svg-src="img/icons/cancel.svg" aria-label="Chiudi"></md-icon>
+</md-button>

@@ -1,0 +1,16 @@
+# Always set these headers.
+Header always set Access-Control-Allow-Credentials "true"
+# la riga subito sotto serve per accettare qualsiasi richiesta da parte di un host che
+# - usi il protocollo http o https
+# - nessuno o un qualsiasi sottodominio
+# - un dominio tra: localhost, dev, test, show, ubware, ip di produzione, dns...
+# - nessuna o qualsiasi porta specificata
+SetEnvIf Origin "http(s)?:\/\/(.*\.)*(localhost|192.168.50.179|192.168.50.178|192.168.50.182|ubware\.it|ubware\.local)(:\d+)?$" AccessControlAllowOrigin=$0$1
+Header always set Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type"
+ 
+# Added a rewrite to respond with a 200 SUCCESS on every OPTIONS request.
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]

@@ -1,0 +1,65 @@
+<div md-colors="{'background': 'grey-400-1'}">
+	<div layout="column" layout-align="start stretch">
+		<div class="md-display-2">Checkup {{postdata.ch_id}}</div>
+		<div layout="row" layout-align="space-between center" layout-padding layout-wrap>
+			<div class="md-display-1" flex md-truncate>{{postdata.azienda.az_descr}}</div>
+			<div class="md-display-1">del {{postdata.ch_date | date:'dd/MM/yyyy HH:mm'}}</div>
+		</div>
+		<md-divider></md-divider>
+		<div layout-margin>
+			<div layout="row" layout-align="start start" layout-padding layout-wrap>
+				<div layout="column" layout-align="start stretch" style="margin: 0 8px">
+					<div class="md-body-2" md-truncate>Utente</div>
+					<div class="md-body-1" md-truncate>{{postdata.utente.cognome}} {{postdata.utente.nome}}</div>
+					<!--<div class="md-caption" md-truncate>{{postdata.ch_idutente}}</div>-->
+				</div>
+				<div layout="column" layout-align="start stretch" style="margin: 0 8px">
+					<div class="md-body-2" md-truncate>Azienda</div>
+					<div class="md-body-1" md-truncate>{{postdata.azienda.az_descr}}</div>
+					<!--<div class="md-caption" md-truncate>{{postdata.ch_idazienda}}</div>-->
+				</div>
+			</div>
+			<div ng-if="postdata.ch_note" layout="column" layout-align="start stretch" style="margin: 0 8px">
+				<div class="md-body-2" md-truncate>Note</div>
+				<div class="md-caption">{{postdata.ch_note}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<md-divider md-colors="{'border-color': 'grey-900-1'}"></md-divider>
+<div ng-repeat="riga in postdata.righe | orderBy:['cr_idargomento', 'cr_idadempimento', 'cr_idstato'] track by $index" md-colors="{'background': $index % 2 ? 'grey-300-1' : 'grey-300-0'}">
+	<div layout="row" layout-align="start start" layout-padding layout-wrap>
+		<div layout="column" layout-align="start stretch" style="margin: 0 8px" ng-repeat="argomento in postdata.argomenti.righe | filter:{ar_id: riga.cr_idargomento}">
+			<div class="md-body-2" md-truncate>Argomento</div>
+			<div class="md-body-1" md-truncate>{{argomento.ar_descr}}</div>
+			<div class="md-caption" md-truncate>{{riga.cr_idargomento}}</div>
+		</div>
+		<div layout="column" layout-align="start stretch" style="margin: 0 8px" ng-repeat="adempimento in (postdata.argomenti.righe | filter:{ar_id: riga.cr_idargomento})[0].adempimenti | filter:{ad_id: riga.cr_idadempimento}">
+			<div class="md-body-2" md-truncate>Adempimento</div>
+			<div class="md-body-1" md-truncate>{{adempimento.ad_descr}}</div>
+			<div class="md-caption" md-truncate>{{riga.cr_idadempimento}}</div>
+		</div>
+		<div layout="column" layout-align="start stretch" style="margin: 0 8px" ng-if="riga.cr_data_esecuzione">
+			<div class="md-body-2" md-truncate>Data esecuzione</div>
+			<div class="md-body-1" md-truncate>{{riga.cr_data_esecuzione | date:'dd/MM/yyyy'}}</div>
+		</div>
+		<div layout="column" layout-align="start stretch" style="margin: 0 8px" ng-if="riga.cr_data_scadenza">
+			<div class="md-body-2" md-truncate>Data scadenza</div>
+			<div class="md-body-1" md-truncate>{{riga.cr_data_scadenza | date:'dd/MM/yyyy'}}</div>
+		</div>
+		<div layout="column" layout-align="start stretch" style="margin: 0 8px" ng-repeat="stato in ((postdata.argomenti.righe | filter:{ar_id: riga.cr_idargomento})[0].adempimenti | filter:{ad_id: riga.cr_idadempimento})[0].stati | filter:{st_id: riga.cr_idstato}">
+			<div class="md-body-2" md-truncate>Stato</div>
+			<div class="md-body-1" md-truncate>{{stato.st_descr}}</div>
+			<div class="md-caption" md-truncate>{{stato.st_id}}</div>
+		</div>
+		<div layout="column" layout-align="start stretch" style="margin: 0 8px" ng-repeat="sanzione in riga.sanzioni">
+			<div class="md-body-2" md-truncate>Sanzione {{sanzione.crs_id}}</div>
+			<div class="md-body-1" md-truncate>{{sanzione.crs_descr}}</div>
+			<div class="md-caption" md-truncate>{{sanzione.crs_note}}</div>
+		</div>
+	</div>
+	<div ng-if="riga.cr_note" layout="column" layout-align="start stretch" style="margin: 0 8px">
+		<div class="md-body-2" md-truncate>Note</div>
+		<div class="md-caption">{{riga.cr_note}}</div>
+	</div>
+</div>

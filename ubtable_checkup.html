@@ -1,0 +1,114 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cr_idargomento" aria-label="cr_idargomento">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/books.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cr_idadempimento" aria-label="cr_idadempimento">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/book.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cr_idstato" aria-label="cr_idstato">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/priority.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.sanzioni" aria-label="sanzioni">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/money.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.allegati" aria-label="allegati">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/file.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cr_idargomento">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cr_idargomento')">
+				<md-icon md-svg-src="img/icons/books.svg"><md-tooltip md-direction="top">Argomento</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idargomento') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idargomento') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cr_idadempimento">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cr_idadempimento')">
+				<md-icon md-svg-src="img/icons/book.svg"><md-tooltip md-direction="top">Adempimento</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idadempimento') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idadempimento') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cr_idstato">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cr_idstato')">
+				<md-icon md-svg-src="img/icons/priority.svg"><md-tooltip md-direction="top">Stato</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idstato') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idstato') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.sanzioni">
+			<div layout="row" layout-align="center center">
+				<md-icon md-svg-src="img/icons/money.svg"><md-tooltip md-direction="top">Sanzioni</md-tooltip></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.allegati">
+			<div layout="row" layout-align="center center">
+				<md-icon md-svg-src="img/icons/file.svg"><md-tooltip md-direction="top">Allegati</md-tooltip></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33"></div>
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="checkup_riga in model.filtered">
+		<div class="ub-table-body-row" layout="row" md-colors="{'borderLeft-color': (checkup_riga | checkup_riga_ok) ? 'green' : 'orange'}">
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cr_idargomento">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{checkup_riga.cr_idargomento}} - {{argomenti.map[checkup_riga.cr_idargomento].ar_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cr_idadempimento">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{checkup_riga.cr_idadempimento}} - {{(checkup_riga.cr_idadempimento | get_adempimento:checkup_riga.cr_idargomento).ad_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cr_idstato">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{checkup_riga.cr_idstato}} - {{(checkup_riga.cr_idstato | get_stato:checkup_riga.cr_idargomento:checkup_riga.cr_idadempimento).st_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.sanzioni">
+				<div layout="column" layout-align="center stretch" layout-fill>
+					<div class="md-caption" md-truncate ng-repeat="checkup_riga_sanzione in checkup_riga.sanzioni">{{checkup_riga_sanzione.crs_idsanzione}} - {{(checkup_riga_sanzione.crs_idsanzione | get_sanzione:checkup_riga.cr_idargomento:checkup_riga.cr_idadempimento:checkup_riga.cr_idstato).sa_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.allegati">
+				<div layout="row" layout-align="start center" layout-fill layout-wrap>
+					<!--
+					<md-button class="md-icon-button" ng-click="allegato.blob_base64 ? download_file_by_base64(allegato.blob_base64, allegato.al_descr, allegato.al_type, true) : download_file(allegato.al_path, allegato.al_descr, true)" ng-repeat="allegato in checkup_riga.allegati">
+						<md-icon md-svg-icon="img/icons/{{allegato.al_type | file_icon}}.svg"></md-icon>
+						<md-tooltip md-direction="top">{{allegato}}</md-tooltip>
+					</md-button>
+					-->
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="anagrafica_checkup_riga(checkup_riga, !(logged_user | utente_is_utente), logged_user | utente_is_utente, model)">
+						<md-icon md-svg-icon="img/icons/{{(logged_user | utente_is_utente) ? 'edit' : 'search'}}.svg"></md-icon>
+						<md-tooltip md-direction="top">{{(logged_user | utente_is_utente) ? 'Modifica' : 'Visualizza'}}</md-tooltip>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

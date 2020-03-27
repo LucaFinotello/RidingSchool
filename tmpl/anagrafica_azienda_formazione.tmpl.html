@@ -1,0 +1,78 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_tie.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.azienda_formazione.azienda"
+					md-search-text="dialog.azienda_search"
+					md-items="azienda in dialog.aziende.righe | filter:dialog.azienda_search"
+					md-item-text="azienda.az_descr"
+					md-floating-label="Azienda"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.azienda_formazione.af_idazienda = azienda.az_id"
+					md-search-text-change="dialog.azienda_formazione.af_idazienda = undefined; dialog.azienda_formazione.azienda = undefined"
+					ng-disabled="dialog.disabledform"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{azienda.az_id}} - {{azienda.az_descr}}</div>
+						<md-not-found>Non sono state trovate aziende per "{{dialog.azienda_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/school.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.azienda_formazione.formazione"
+					md-search-text="dialog.formazione_search"
+					md-items="formazione in dialog.formazioni.righe | filter:dialog.formazione_search"
+					md-item-text="formazione.fo_descr"
+					md-floating-label="Formazione"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.azienda_formazione.af_idformazione = formazione.fo_id"
+					md-search-text-change="dialog.azienda_formazione.af_idformazione = undefined; dialog.azienda_formazione.formazione = undefined"
+					ng-disabled="dialog.disabledform"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{formazione.fo_id}} - {{formazione.fo_descr}}</div>
+						<md-not-found>Non sono state trovate formazioni per "{{dialog.formazione_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/calendar.svg"></md-icon>
+			<md-input-container flex>
+				<label>Data richiesta</label>
+				<md-datepicker ng-model="dialog.data_richiesta" md-max-date="dialog.data_evasione" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform" ng-required="true"></md-datepicker>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/done.svg"></md-icon>
+			<md-input-container flex>
+				<label>Data evasione</label>
+				<md-datepicker ng-model="dialog.data_evasione" md-min-date="dialog.data_richiesta" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform"></md-datepicker>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note</label>
+				<textarea rows="3" ng-model="dialog.azienda_formazione.af_note" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+	</div>
+</md-content>

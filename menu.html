@@ -1,0 +1,49 @@
+<md-button class="md-icon-button" ng-click="page('welcome_page')" ng-class="{'selected': page()=='welcome_page'}" aria-label="welcome_page">
+	<md-icon md-svg-icon="img/icons/home.svg"></md-icon>
+	<md-tooltip md-direction="bottom">Home</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-if="gestione.moduli.scadenziario && logged_user.fl_scadenziario == '1'" ng-click="page('scadenziario')" ng-class="{'selected': page()=='scadenziario'}" aria-label="scadenziario">
+	<md-icon md-svg-icon="img/icons/pista.svg"></md-icon>
+	<md-tooltip md-direction="bottom">Agenda Pista</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-if="gestione.moduli.allegati && logged_user.fl_allegati == '1'" ng-click="page('allegati')" ng-class="{'selected': page()=='allegati'}" aria-label="allegati">
+	<md-icon md-svg-icon="img/icons/allegato.svg"></md-icon>
+	<md-tooltip md-direction="bottom">Allegati</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-if="gestione.moduli.report && logged_user.fl_report == '1'" ng-click="page('report')" ng-class="{'selected': page()=='report'}" aria-label="school">
+	<md-icon md-svg-icon="img/icons/school.svg"></md-icon>
+	<md-tooltip md-direction="bottom">School</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-if="gestione.moduli.gestione && logged_user.fl_gestione == '1'" ng-click="page('gestione')" ng-class="{'selected': page()=='gestione'}" aria-label="gestione">
+	<md-icon md-svg-icon="img/icons/settings.svg"></md-icon>
+	<md-tooltip md-direction="bottom">Gestione</md-tooltip>
+</md-button>
+<div flex></div>
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-icon-button" aria-label="sidenav" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/more.svg"></md-icon>
+	</md-button>
+
+	<md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+		<md-menu-item>
+			<md-button>
+				<md-icon md-svg-icon="img/icons/person.svg"></md-icon> {{logged_user.username}}
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button ng-click="change_password()">
+				<md-icon md-svg-icon="img/icons/key.svg"></md-icon> Cambia password
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button ng-click="change_password()">
+				<md-icon md-svg-icon="img/icons/info.svg"></md-icon> Version 1.0.0
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button ng-click="logout()">
+				<md-icon md-svg-icon="img/icons/logout.svg"></md-icon> LOGOUT
+			</md-button>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>

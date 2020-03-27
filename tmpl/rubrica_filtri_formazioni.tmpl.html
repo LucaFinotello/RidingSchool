@@ -1,0 +1,14 @@
+<div layout="column" layout-align="start stretch" flex class="full-height">
+	<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+		<div layout="row" layout-align="start center">
+			<md-input-container flex>
+				<label>Cerca</label>
+				<input type="text" ng-model="rubrica.model.filtri.search" />
+
+				<md-button class="md-icon-button ub-suffix" ng-click="rubrica.model.filtri.search = undefined" ng-if="rubrica.model.filtri.search" aria-label="rubrica-search">
+					<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+				</md-button>
+			</md-input-container>
+		</div>
+	</div>
+</div>

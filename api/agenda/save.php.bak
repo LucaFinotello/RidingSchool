@@ -1,0 +1,62 @@
+<?php
+ob_start();
+require(__DIR__ . "/../../config/config.php");
+require(__DIR__ . "/../session_recovery.php");
+require(__DIR__ . "/../base/beansMaps.php");
+require(__DIR__ . "/../base/fnQuery.php");
+require(__DIR__ . "/../base/fnSave.php");
+
+$response = (Object) [
+	"status" => false
+	,"response" => "init"
+];
+
+try {
+	if (isset($_SESSION[$session_logged])) {
+		$postdata		= file_get_contents("php://input");
+		$request		= json_decode($postdata);
+
+		$cliente		= isset($request->cliente)		? $request->cliente		: null;
+
+		if ($cliente) {
+			beginTransaction([$dbh, $dbh_gestionale]);
+
+			$query = (Object) [
+				"error" => "init"
+				,"status" => true
+			];
+			if (isset($cliente->cl_id) && $cliente->cl_id && isset($cliente->adempimenti)) {
+				$params = [];
+				$ad_ids = "0";
+				foreach ($cliente->adempimenti as $adempimento) {
+					$ad_ids .= ",?";
+					$params[] = $adempimento->ad_id;
+				}
+				$sql = "DELETE FROM adempimenti WHERE ad_id NOT IN ($ad_ids)";
+				echo "$sql\n".implode(",", $params);
+				$query = query($beansMaps->AdempimentoBean->dbh, $sql, $params);
+			}
+
+			if ($query->status) {
+				$response = save("ClienteBean", $cliente);
+			} else {
+				$response->response = $query->error;
+			}
+
+			$response->status ? commit([$dbh, $dbh_gestionale]) : rollBack([$dbh, $dbh_gestionale]);
+		} else {
+			$response->response = "cliente is null";
+		}
+	} else {
+		$response->response = "Sessione scaduta";
+	}
+} catch (Exception $e) {
+	$response->response = "Fatal error";
+	echo $e->getMessage();
+}
+
+$obStr = ob_get_clean();
+$response->response = $response->status ? $response->response : $response->response . ($obStr ? ". More info: " . $obStr : "");
+ob_end_clean();
+echo json_encode($response);
+?>

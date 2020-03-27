@@ -1,0 +1,27 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<div class="md-title" ng-if="!dialog.dipendenti_formazioni.righe.length">Nessun dato da visualizzare</div>
+		<div ng-if="dialog.dipendenti_formazioni.righe.length" layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/person_helm.svg"></md-icon>
+			<div class="md-subhead">{{dialog.dipendenti_formazioni.righe[0].df_iddipendente}} - {{dialog.dipendenti.map[dialog.dipendenti_formazioni.righe[0].df_iddipendente].di_descr}}</div>
+		</div>
+		<div ng-if="dialog.dipendenti_formazioni.righe.length" layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/school.svg"></md-icon>
+			<div class="md-subhead">{{dialog.dipendenti_formazioni.righe[0].df_idformazione}} - {{dialog.formazioni.map[dialog.dipendenti_formazioni.righe[0].df_idformazione].fo_descr}}</div>
+		</div>
+		<md-list>
+			<md-list-item class="md-2-line" ng-class="{'striped': $index % 2}" ng-repeat="dipendente_formazione in dialog.dipendenti_formazioni.righe | orderBy:['-df_data_esecuzione']"
+				ng-click="
+					dipendente_formazione.dipendente = dialog.dipendenti.map[dipendente_formazione.df_iddipendente];
+					dipendente_formazione.formazione = dialog.formazioni.map[dipendente_formazione.df_idformazione];
+					dialog.anagrafica_dipendente_formazione(dipendente_formazione, !(dialog.logged_user | utente_is_utente), dialog.logged_user | utente_is_utente);
+				"
+			>
+				<div class="md-list-item-text">
+					<div class="md-body-1" md-truncate>Data esecuzione: {{dipendente_formazione.df_data_esecuzione | date:'dd/MM/yyyy'}}</div>
+					<div class="md-body-1" md-truncate>Data scadenza: {{dipendente_formazione.df_data_scadenza | date:'dd/MM/yyyy'}}</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-content>

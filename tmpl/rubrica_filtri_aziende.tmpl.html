@@ -1,0 +1,34 @@
+<div layout-padding> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" layout-align="start center">
+		<md-input-container flex>
+			<label>Cerca</label>
+			<input type="text" ng-model="rubrica.model.filtri.search" />
+
+			<md-button class="md-icon-button ub-suffix" ng-click="rubrica.model.filtri.search = undefined" ng-if="rubrica.model.filtri.search" aria-label="rubrica-search">
+				<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+			</md-button>
+		</md-input-container>
+	</div>
+</div>
+
+<!--
+<md-radio-group ng-model="rubrica.model.filtri.aziende_tipi_operator">
+	<md-radio-button value="AND" class="md-primary">Filtra in AND</md-radio-button>
+	<md-radio-button value="OR" class="md-primary">Filtra in OR</md-radio-button>
+</md-radio-group>
+
+<div layout="column" layout-align="start stretch" flex class="full-height" scroll="rubrica.aziende_tipi" layout-padding>
+	<div ng-repeat="azienda_tipo in rubrica.aziende_tipi.righe | orderBy:['at_property', 'at_value'] | limitTo:rubrica.aziende_tipi.limit" ng-class="{'striped': $index % 2}">
+		<md-checkbox class="md-primary no-margin" ng-checked="rubrica.aziende_tipi_checked(azienda_tipo)" ng-click="rubrica.aziende_tipi_click(azienda_tipo)" aria-label="azienda_tipo" layout="column" layout-align="start stretch">
+			<div layout="row" ng-if="rubrica.aziende_tipi_subhead">
+				<div flex md-truncate class="md-subhead">{{rubrica.aziende_tipi_subhead(azienda_tipo)}}</div>
+			</div>
+			<div layout="row" ng-if="rubrica.aziende_tipi_body">
+				<div flex md-truncate class="md-body-1">{{rubrica.aziende_tipi_body(azienda_tipo)}}</div>
+			</div>
+			<div layout="row" ng-if="rubrica.aziende_tipi_caption">
+				<div flex md-truncate class="md-caption">{{rubrica.aziende_tipi_caption(azienda_tipo)}}</div>
+			</div>
+		</md-checkbox>
+	</div>
+</div>-->

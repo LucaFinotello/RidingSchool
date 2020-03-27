@@ -1,0 +1,453 @@
+body:not(.ubprint) {
+	min-height: 100vh;
+	max-height: 100vh;
+	min-width: 100vw;
+	max-width: 100vw;
+	overflow: hidden;
+	background-image: url(../img/download.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	position: center;
+	color:blue;
+}
+
+.dark-primary-color    { background: #1976D2; }
+.default-primary-color { background: #2196F3; }
+.light-primary-color   { background: #BBDEFB; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #03A9F4; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
+
+.layout-padding
+,.layout-padding-gt-sm
+,.layout-padding-gt-sm > *
+,.layout-padding-md
+,.layout-padding-md > *
+,.layout-padding > *
+,.layout-padding > .flex
+,.layout-padding > .flex-gt-sm
+,.layout-padding > .flex-md {
+	padding: 4px;
+}
+.layout-padding > md-input-container > label:not(.md-container-ignore)
+,md-input-container.layout-padding > label:not(.md-container-ignore) {
+	left: 4px;
+}
+md-card {
+	margin: 4px;
+}
+
+.md-toast-open-top .md-button.md-fab-top-left
+,.md-toast-open-top .md-button.md-fab-top-right
+,.md-toast-open-bottom .md-button.md-fab-bottom-left
+,.md-toast-open-bottom .md-button.md-fab-bottom-right {
+	transition: none !important;
+	-webkit-transform: none !important;
+	transform: none !important;
+}
+
+.md-body-2 {
+	font-weight: 550;
+}
+
+[layout="row"][flex] {
+	overflow-y: auto;
+}
+[layout="column"][flex]  {
+	overflow-x: auto;
+}
+/*
+[layout="row"] {
+	overflow-x: auto;
+}
+[layout="column"] {
+	overflow-y: auto;
+}
+*/
+[ng-controller="ubprint"] {
+	min-width: fit-content;
+}
+
+.md-errors-spacer:empty {display: none}
+
+md-tooltip {
+	font-size: 14px !important;
+	opacity: 1;
+}
+
+md-menu-item {
+	height: auto;
+}
+md-slider[md-vertical] {
+	min-height: 170px;
+}
+
+* {
+	box-sizing: border-box;
+}
+*:focus {
+	outline: none !important;
+}
+*[ng-click], *[onclick] {
+	cursor: pointer;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+.white-space-pre {
+	white-space: pre-line;
+}
+
+.full-height {
+	min-height: 100%;
+	max-height: 100%;
+}
+
+.full-width {
+	min-width: 100%;
+	max-width: 100%;
+}
+/* non so perchè l'avevo scritto. probabilmente per le md-card usate come section... se veramente serviva è possibile che qualche scrollbar verticale di troppo verrà visualizzata
+.layout-padding > .full-height:not(.ub-absolute) {
+	min-height: calc(100% - 16px);
+	max-height: calc(100% - 16px);
+}
+.layout-padding > .full-width:not(.ub-absolute) {
+	min-width: calc(100% - 16px);
+	max-width: calc(100% - 16px);
+}
+*/
+
+.bold{
+	font-weight: bold;
+}
+
+.hidden {
+	display: none;
+}
+
+.text-weight {
+	font-weight: 400;
+}
+
+.divider-vertical {
+	border-right: 1px solid white;
+	margin: 4px;
+	align-self: stretch;
+}
+
+#loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5); 
+	z-index: 90;
+
+	display: flex;
+	justify-content: center;
+}
+#loader md-progress-circular {
+	align-self: center;
+}
+
+@-webkit-keyframes rotating-function {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes rotating-function {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@-ms-keyframes rotating-function {
+	from {
+		-ms-transform: rotate(0deg);
+	}
+	to {
+		-ms-transform: rotate(360deg);
+	}
+}
+
+@-o-keyframes rotating-function {
+	from {
+		-o-transform: rotate(0deg);
+	}
+	to {
+		-o-transform: rotate(360deg);
+	}
+}
+
+@keyframes rotating-function {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+
+.no-margin {
+	margin:0 !important;
+}
+.margin-top-15px {
+	margin-top: 15px;
+}
+.margin-bottom-15px {
+	margin-bottom: 15px;
+}
+.no-padding {
+	padding: 0 !important;
+}
+
+.md-block {
+	display: block;
+	width: 100%;
+}
+
+
+.width-0 {
+	width: 0%;
+}
+.width-25 {
+	width: 25%;
+}
+.width-50 {
+	width: 50%;
+}
+.width-75 {
+	width: 75%;
+}
+.width-100 {
+	width: 100%;
+}
+
+.thumbnail {
+	max-width: 100px;
+	max-height: 100px;
+}
+
+md-backdrop {
+	height: 100% !important; 
+}
+
+.icona .pedice {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+
+	width: 15px;
+	height: 15px;
+	border-radius: 100%;
+
+	text-align: center;
+	font-size: 70%;
+	background: #FDB813;
+}
+
+md-icon {
+	min-width: 1px;
+	min-height: 1px;
+	color:blue;
+}
+*:not(.md-button) > md-icon {
+	margin: 0;
+	padding: 0;
+}
+.md-caption md-icon {
+	width: 20px;
+	height: 20px;
+}
+
+.md-button.md-icon-button {
+	margin: 0;
+	min-width: 40px;
+}
+.md-button.selected{
+	background-color: rgba(156, 193, 230, 0.4) !important;
+}
+
+/* input disabled */
+[disabled] md-input-container .md-input
+, md-input-container .md-input[disabled]
+, input[readonly='readonly'] 
+, textarea[readonly='readonly'] {
+	border-bottom: none;
+}
+md-select.md-default-theme[disabled] .md-select-value, md-select[disabled] .md-select-value {
+	background: none;
+}
+
+[disabled][readonly] .md-input
+,.md-input[disabled][readonly] {
+	color: rgba(0,0,0,1);
+	background-image: linear-gradient(90deg,rgba(0,0,0,0,1) 0,rgba(0,0,0,0,1) 33%,transparent 0);
+	background-image: -ms-linear-gradient(left,transparent 0,rgba(0,0,0,0,1) 100%);
+}
+
+/* datepicker */
+md-datepicker .md-datepicker-input-container {
+	cursor: initial;
+}
+md-datepicker .md-datepicker-input {
+	pointer-events: none;
+}
+/*
+._md-datepicker-floating-label._md-datepicker-has-calendar-icon>label:not(.md-no-float):not(.md-container-ignore) {
+	width: calc(100% - 56px);
+}
+md-datepicker .md-datepicker-triangle-button
+,.md-datepicker-calendar-pane .md-datepicker-input-mask {
+	display: none;
+}
+.md-default-theme .md-datepicker-open .md-datepicker-input-container
+,.md-datepicker-open .md-datepicker-input-container {
+	background: transparent;
+}
+*/
+/*
+md-input-container._md-datepicker-floating-label:not(.md-input-has-value) > label
+,md-input-container._md-datepicker-floating-label:not(.md-input-focussed) > label {
+	background-color: rgb(250, 250, 250, 0);
+}
+*/
+
+md-content.md-default-theme, md-content {
+	background-color: transparent;
+}
+
+md-input-container {
+	margin-top: 14px;
+	margin-bottom: 4px;
+}
+md-input-container.md-input-container-icon.md-icon-right>.md-button:last-of-type {
+	margin: 0;
+	right: 2px;
+	left: auto;
+}
+md-input-container.md-input-container-icon>.md-button {
+	position: absolute;
+	top: 8px;
+	left: 2px;
+	right: auto;
+}
+md-input-container:not(.md-input-has-value) input:not(:focus) {
+	color: black;
+}
+md-input-container md-input-container {
+	margin: 0; /* questo sopra */
+}
+md-autocomplete[md-floating-label] .md-show-clear-button button {
+	top: 2px; /* sono i 20px originali meno i 18px tolti sopra*/
+}
+
+md-toolbar {
+	min-height: 1px;
+}
+
+.md-chips .md-chip-input-container {
+	width: 100%;
+}
+
+md-switch {
+	height: 21px;
+	margin: 8px 0;
+}
+
+md-checkbox .md-label 
+,md-radio-button .md-label
+,md-input-container .md-input {
+	font-size: 14px;
+}
+
+md-checkbox .md-label:empty
+,md-checkbox .md-container:after {
+	display: none;
+}
+
+md-list {
+	overflow: auto;
+}
+
+div[ng-repeat].striped
+,md-list-item.striped {
+	background-color: #eee;
+}
+md-list-item.selected {
+	background-color: cyan;
+}
+md-list-item md-divider.no-md-list-item {
+	position: relative;
+}
+
+md-divider:first-child {
+	display: none;
+}
+
+.ub-relative {
+	position: relative;
+}
+.ub-absolute {
+	position: absolute;
+}
+.ub-top {
+	top: 0px;
+}
+.ub-bottom {
+	bottom: 0px;
+}
+.ub-right {
+	right: 0px;
+}
+.ub-left {
+	left: 0px;
+}
+
+md-input-container > .ub-suffix {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.md-avatar {
+	border-radius: 50%;
+}
+.md-avatar.md-avatar-12 {
+	max-width: 12px;
+	max-height: 12px;
+}
+.md-avatar.md-avatar-24 {
+	max-width: 24px;
+	max-height: 24px;
+}
+.md-avatar.md-avatar-50 {
+	max-width: 50px;
+	max-height: 50px;
+}
+.md-avatar.md-avatar-64 {
+	max-width: 64px;
+	max-height: 64px;
+}
+.md-avatar.md-avatar-75 {
+	max-width: 75px;
+	max-height: 75px;
+}
+.md-avatar.md-avatar-100 {
+	max-width: 100px;
+	max-height: 100px;
+}

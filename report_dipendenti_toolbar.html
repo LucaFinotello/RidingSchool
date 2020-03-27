@@ -1,0 +1,13 @@
+<md-button class="md-icon-button" ng-click="select_dipendenti()" aria-label="refresh">
+	<md-icon md-svg-src="img/icons/refresh.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiorna</md-tooltip>
+</md-button>
+<div flex></div>
+<!--<md-button class="md-icon-button" ng-click="report_dipendenti_export_pdf(dipendenti.fn_filtri_filter(dipendenti.righe | orderBy:dipendenti.filtri_app_scope.fn_filtri_get_sort_config(), dipendenti.filtri), dipendenti.filtri)" aria-label="xlsx">
+	<md-icon md-svg-src="img/icons/pdf.svg"></md-icon>
+	<md-tooltip md-direction="top">Esportazione PDF</md-tooltip>
+</md-button>-->
+<md-button class="md-icon-button" ng-click="report_dipendenti_export_xlsx(dipendenti.fn_filtri_filter(dipendenti.righe | orderBy:dipendenti.filtri_app_scope.fn_filtri_get_sort_config(), dipendenti.filtri), dipendenti.filtri)" aria-label="xlsx">
+	<md-icon md-svg-src="img/icons/xlsx.svg"></md-icon>
+	<md-tooltip md-direction="top">Esportazione excel</md-tooltip>
+</md-button>

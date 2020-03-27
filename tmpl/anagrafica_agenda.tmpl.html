@@ -1,0 +1,64 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/event.svg"><md-tooltip md-direction="top">Data</md-tooltip></md-icon>
+			<md-input-container flex>
+				<label>Data</label>
+				<input type="date" ng-model="dialog.agenda.ag_data" ng-readonly="dialog.disabledform" ng-required="true"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Sospensioni Ant</label>
+				<input type="number" ng-model="dialog.formazione.ag_ant" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Precarico</label>
+				<input type="number" ng-model="dialog.formazione.ag_pre_ant" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Mono</label>
+				<input type="number" ng-model="dialog.formazione.ag_post" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Precarico</label>
+				<input type="number" ng-model="dialog.formazione.ag_pre_post" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Pres. Ant</label>
+				<input type="number" ng-model="dialog.formazione.ag_pres_ant" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Pres. Post</label>
+				<input type="number" ng-model="dialog.formazione.ag_pres_post" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="10" step="1"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/surname.svg"></md-icon>
+			<md-input-container flex>
+				<label>Temperatura C°</label>
+				<input type="number" ng-model="dialog.formazione.ag_gradi" ng-readonly="dialog.disabledform" ng-required="true" min="0" max="40" step="1"/>
+			</md-input-container>
+			<md-icon md-svg-src="img/icons/name.svg"></md-icon>
+			<md-input-container flex>
+				<label>Moto</label>
+				<input type="text" ng-model="dialog.formazione.ag_moto" ng-required="true"/>
+			</md-input-container>
+		</div>
+
+	</div>
+</md-content>

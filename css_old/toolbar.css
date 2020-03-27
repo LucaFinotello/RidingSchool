@@ -1,0 +1,17 @@
+.toolbar {
+	/*height: 40px;*/
+}
+
+.toolbar .md-title
+,.toolbar .md-subhead
+,.toolbar .md-body-1
+,.toolbar .md-body-2
+,.toolbar .md-caption
+,.toolbar .md-button md-icon
+,.toolbar input:not(.md-datepicker-input)
+,.toolbar input[aria-expanded="false"].md-datepicker-input
+,.toolbar label
+,.toolbar md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label
+,.toolbar md-input-container:not(.md-input-invalid).md-input-has-value label {
+	color: white;
+}

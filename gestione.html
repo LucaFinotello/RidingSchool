@@ -1,0 +1,115 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="gestione.page == 'utenti'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_utenti.html'"
+></md-card>
+<div
+	ng-if="gestione.page == 'utenti'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_utenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="gestione.page == 'aziende'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_aziende.html'"
+></md-card>
+<div
+	ng-if="gestione.page == 'aziende'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_aziende_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="gestione.page == 'dipendenti'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_dipendenti.html'"
+></md-card>
+<div
+	ng-if="gestione.page == 'dipendenti'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_dipendenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="gestione.page == 'argomenti'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_argomenti.html'"
+></md-card>
+<div
+	ng-if="gestione.page == 'argomenti'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_argomenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="gestione.page == 'azienda_argomenti'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_azienda_argomenti.html'"
+></md-card>
+<div
+	ng-if="gestione.page == 'azienda_argomenti'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_azienda_argomenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="gestione.page == 'formazioni'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_formazioni.html'"
+></md-card>
+<div
+	ng-if="gestione.page == 'formazioni'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'gestione_formazioni_toolbar.html'"
+></div>

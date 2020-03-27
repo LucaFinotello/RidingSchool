@@ -1,0 +1,14 @@
+<md-dialog aria-label="{{dialog.title}}" class="dialog {{dialog.class}}">
+	<form name="form" ng-cloak>
+		<div
+			ng-if="dialog.toolbar_action_buttons_tmpl"
+			md-colors="{background: dialog.colors.primary_toolbar}"
+			layout="row"
+			layout-align="start center"
+			class="toolbar"
+			ng-include="dialog.toolbar_action_buttons_tmpl"
+		></div>
+
+		<md-dialog-content ng-include="dialog.content_tmpl"></md-dialog-content>
+	</form>
+</md-dialog>

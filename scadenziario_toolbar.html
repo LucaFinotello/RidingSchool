@@ -1,0 +1,25 @@
+<!--<md-button ng-if="checkups.selected" class="md-icon-button" ng-click="clean_checkup_scopes(checkups.selected); scadenziario.page = 'checkup'" ng-class="{'selected': scadenziario.page == 'checkup'}" aria-label="checkup">
+	<md-icon md-svg-src="img/icons/task_edit.svg"></md-icon>
+	<md-tooltip md-direction="top">Checkup</md-tooltip>
+</md-button>
+<md-button ng-if="!(logged_user | utente_is_dipendente)" class="md-icon-button" ng-click="clean_checkup_scopes(checkups.selected); scadenziario.page = 'checkups'" ng-class="{'selected': scadenziario.page == 'checkups'}" aria-label="checkups">
+	<md-icon md-svg-src="img/icons/task.svg"></md-icon>
+	<md-tooltip md-direction="top">Agenda pilota</md-tooltip>
+</md-button>
+
+<md-button ng-if="!(logged_user | utente_is_dipendente)" class="md-icon-button" ng-click="clean_checkup_scopes(checkups.selected); scadenziario.page = 'adempimenti'" ng-class="{'selected': scadenziario.page == 'adempimenti'}" aria-label="adempimenti">
+	<md-icon md-svg-src="img/icons/book.svg"></md-icon>
+	<md-tooltip md-direction="top">Adempimenti dell'azienda</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" ng-click="clean_checkup_scopes(checkups.selected); scadenziario.page = 'dipendenti_formazioni'" ng-class="{'selected': scadenziario.page == 'dipendenti_formazioni'}" aria-label="dipendenti_formazioni">
+	<md-icon md-svg-src="img/icons/school_done.svg"></md-icon>
+	<md-tooltip md-direction="top">Formazione svolta dai dipendenti</md-tooltip>
+</md-button>
+<md-button ng-if="!(logged_user | utente_is_dipendente)" class="md-icon-button" ng-click="clean_checkup_scopes(checkups.selected); scadenziario.page = 'school_calendar'" ng-class="{'selected': scadenziario.page == 'school_calendar'}" aria-label="school_calendar">
+	<md-icon md-svg-src="img/icons/school_calendar.svg"></md-icon>
+	<md-tooltip md-direction="top">Formazione prenotata dall'azienda</md-tooltip>
+</md-button>-->
+<md-button ng-if="!(logged_user | utente_is_dipendente).selected" class="md-icon-button" ng-click="clean_checkup_scopes(checkups.selected); scadenziario.page = 'crm'" ng-class="{'selected': scadenziario.page == 'crm'}" aria-label="crm">
+	<md-icon md-svg-src="img/icons/task.svg"></md-icon>
+	<md-tooltip md-direction="top">Agenda pilota</md-tooltip>
+</md-button>

@@ -1,0 +1,18 @@
+<md-button class="md-icon-button" ng-click="select_aziende_activities()" aria-label="refresh">
+	<md-icon md-svg-src="img/icons/refresh.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiorna</md-tooltip>
+</md-button>
+<div flex></div>
+<md-button class="md-icon-button"
+	ng-click="
+		anagrafica_azienda_activity({
+			aa_idazienda: scadenziario.azienda.az_id
+			,azienda: scadenziario.azienda
+			,aa_idutente: logged_user.username
+			,utente: logged_user
+		})
+	" aria-label="add"
+>
+	<md-icon md-svg-src="img/icons/add.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiungi</md-tooltip>
+</md-button>

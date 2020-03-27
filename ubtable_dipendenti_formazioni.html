@@ -1,0 +1,151 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item ng-if="page() != 'scadenziario'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.idazienda" aria-label="idazienda">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_tie.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.df_iddipendente" aria-label="df_iddipendente">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_helm.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.df_idformazione" aria-label="df_idformazione">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/school.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.df_data_esecuzione" aria-label="df_data_esecuzione">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/calendar_done.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.df_data_scadenza" aria-label="df_data_scadenza">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/calendar_priority.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.df_docente" aria-label="df_docente">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_school.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.df_note" aria-label="df_note">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/note.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.idazienda">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('idazienda')">
+				<md-icon md-svg-src="img/icons/person_tie.svg"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('idazienda') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('idazienda') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.df_iddipendente">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('df_iddipendente')">
+				<md-icon md-svg-src="img/icons/person_helm.svg"><md-tooltip md-direction="top">Dipendente</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_iddipendente') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_iddipendente') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.df_idformazione">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('df_idformazione')">
+				<md-icon md-svg-src="img/icons/school.svg"><md-tooltip md-direction="top">Formazione</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_idformazione') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_idformazione') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-50" ng-if="model.filtri.show.df_data_esecuzione">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('df_data_esecuzione')">
+				<md-icon md-svg-src="img/icons/calendar_done.svg"><md-tooltip md-direction="top">Data esecuzione</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_data_esecuzione') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_data_esecuzione') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-50" ng-if="model.filtri.show.df_data_scadenza">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('df_data_scadenza')">
+				<md-icon md-svg-src="img/icons/calendar_priority.svg"><md-tooltip md-direction="top">Data scadenza</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_data_scadenza') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_data_scadenza') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.df_docente">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('df_docente')">
+				<md-icon md-svg-src="img/icons/person_school.svg"><md-tooltip md-direction="top">Docente</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_docente') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_docente') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.df_note">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('df_note')">
+				<md-icon md-svg-src="img/icons/note.svg"><md-tooltip md-direction="top">Note</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('df_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-60"></div>
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="dipendente_formazione in model.filtered">
+		<div class="ub-table-body-row" layout="row" layout-align="start stretch" md-colors="{'borderLeft-color': (dipendente_formazione | dipendente_formazione_scaduta) ? 'RED-500-1' : 'RED-500-0'}">
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.idazienda">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{aziende.map[dipendenti.map[dipendente_formazione.df_iddipendente].di_idazienda].az_id}} - {{aziende.map[dipendenti.map[dipendente_formazione.df_iddipendente].di_idazienda].az_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.df_iddipendente">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{dipendente_formazione.df_iddipendente}} - {{dipendenti.map[dipendente_formazione.df_iddipendente].di_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.df_idformazione">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{dipendente_formazione.df_idformazione}} - {{formazioni.map[dipendente_formazione.df_idformazione].fo_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-50" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.df_data_esecuzione">
+				<div layout="row" layout-align="center center" layout-fill>
+					<div class="md-caption" md-truncate>{{dipendente_formazione.df_data_esecuzione | date:'dd/MM/yyyy'}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-50" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.df_data_scadenza">
+				<div layout="row" layout-align="center center" layout-fill>
+					<div class="md-caption" md-truncate>{{dipendente_formazione.df_data_scadenza | date:'dd/MM/yyyy'}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.df_docente">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{dipendente_formazione.df_docente}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.df_note">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{dipendente_formazione.df_note}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-60" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="select_history_dipendente_formazione(dipendente_formazione)">
+						<md-icon md-svg-icon="img/icons/history.svg"></md-icon>
+						<md-tooltip md-direction="top">Storico</md-tooltip>
+					</md-button>
+					<md-button ng-if="logged_user | utente_is_utente" class="md-icon-button" ng-click="anagrafica_dipendente_formazione(dipendente_formazione, !(logged_user | utente_is_utente), logged_user | utente_is_utente)">
+						<md-icon md-svg-icon="img/icons/{{(logged_user | utente_is_utente) ? 'edit' : 'search'}}.svg"></md-icon>
+						<md-tooltip md-direction="top">{{(logged_user | utente_is_utente) ? 'Modifica' : 'Visualizza'}}</md-tooltip>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

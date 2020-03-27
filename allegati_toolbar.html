@@ -1,0 +1,19 @@
+<md-button class="md-icon-button"
+	ng-click="
+		select_allegati();
+		select_allegati_utenti();
+		select_allegati_aziende();
+		select_allegati_dipendenti();
+		select_allegati_checkups();
+		select_allegati_checkups_righe()
+	"
+>
+	<md-icon md-svg-icon="img/icons/refresh.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiorna</md-tooltip>
+</md-button>
+<div flex></div>
+<md-button class="md-icon-button" ng-click="insert_allegato()">
+	<md-icon md-svg-icon="img/icons/add.svg"></md-icon>
+	<md-tooltip md-direction="top">Aggiungi</md-tooltip>
+</md-button>
+<input hide type="file" id="input-allegato" ng-model="allegati.allegato" ub-input-model-change="ub_input_model_change_insert_allegato" />

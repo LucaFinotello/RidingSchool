@@ -1,0 +1,16 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar no-padding"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'ubtable_adempimenti_toolbar.html'"
+></div>
+
+<div layout="row" layout-align="start start" class="full-height" flex>
+	<div ng-if="(logged_user | utente_is_utente) && page() != 'scadenziario' && adempimenti.rubrica_aziende.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(adempimenti.rubrica_aziende)" ng-include="rubrica.template"></div>
+	<div ng-if="adempimenti.rubrica_argomenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(adempimenti.rubrica_argomenti)" ng-include="rubrica.template"></div>
+	<div ng-if="adempimenti.rubrica_adempimenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(adempimenti.rubrica_adempimenti)" ng-include="rubrica.template"></div>
+	<div ng-if="adempimenti.rubrica_stati.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(adempimenti.rubrica_stati)" ng-include="rubrica.template"></div>
+	<div ng-if="adempimenti.rubrica_filtri_adempimenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(adempimenti.rubrica_filtri_adempimenti)" ng-include="rubrica.template"></div>
+	<div flex ng-controller="filtri_app" ng-init="filtri_app(adempimenti)" ub-table layout="column" layout-align="start stretch" class="full-height" ng-include="'ubtable_adempimenti.html'"></div>
+</div>

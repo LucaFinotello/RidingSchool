@@ -1,0 +1,51 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/person_helm.svg"><md-tooltip md-direction="top">Corsista</md-tooltip></md-icon>
+			<md-input-container flex>
+				<label>Nome corsista</label>
+				<input type="text" ng-model="dialog.dipendente.di_descr" ng-readonly="dialog.disabledform" ng-required="true"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/circuit.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.dipendente.azienda"
+					md-search-text="dialog.azienda_search"
+					md-items="azienda in dialog.aziende.righe | filter:dialog.azienda_search"
+					md-item-text="azienda.az_descr"
+					md-floating-label="Circuiti"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.dipendente.di_idazienda = azienda.az_id"
+					md-search-text-change="dialog.dipendente.di_idazienda = undefined; dialog.dipendente.azienda = undefined"
+					ng-disabled="dialog.disabledform"
+				>
+					<md-item-template>
+						<div>{{azienda.az_descr}}</div>
+						<md-not-found>Non sono state trovati circuiti per "{{dialog.azienda_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note</label>
+				<textarea ng-model="dialog.dipendente.di_note" rows="3" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding ng-if="dialog.logged_user | utente_is_utente">
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note interne</label>
+				<textarea ng-model="dialog.dipendente.di_note_interne" rows="3" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+	</div>
+</md-content>

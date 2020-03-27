@@ -1,0 +1,25 @@
+<!--<md-button ng-if="logged_user.admin == '1'" class="md-icon-button" ng-class="{'selected': allegati.rubrica_utenti.fl_open}" ng-click="allegati.toggle_rubrica(allegati.rubrica_utenti)">
+	<md-icon md-svg-icon="img/icons/person.svg"></md-icon>
+	<md-tooltip md-direction="top">Utenti</md-tooltip>
+</md-button>
+<md-button ng-if="logged_user | utente_is_utente" class="md-icon-button" ng-class="{'selected': allegati.rubrica_aziende.fl_open}" ng-click="allegati.toggle_rubrica(allegati.rubrica_aziende)">
+	<md-icon md-svg-icon="img/icons/person_tie.svg"></md-icon>
+	<md-tooltip md-direction="top">Aziende</md-tooltip>
+</md-button>
+<md-button ng-if="(logged_user | utente_is_utente) || (logged_user | utente_is_azienda)" class="md-icon-button" ng-class="{'selected': allegati.rubrica_dipendenti.fl_open}" ng-click="allegati.toggle_rubrica(allegati.rubrica_dipendenti)">
+	<md-icon md-svg-icon="img/icons/person_helm.svg"></md-icon>
+	<md-tooltip md-direction="top">Dipendenti</md-tooltip>
+</md-button>
+<md-button ng-if="logged_user | utente_is_utente" class="md-icon-button" ng-class="{'selected': allegati.rubrica_checkups.fl_open}" ng-click="allegati.toggle_rubrica(allegati.rubrica_checkups)">
+	<md-icon md-svg-icon="img/icons/task.svg"></md-icon>
+	<md-tooltip md-direction="top">Checkup</md-tooltip>
+</md-button>-->
+<md-button class="md-icon-button" ng-class="{'selected': allegati.rubrica_filtri_allegati.fl_open}" ng-click="allegati.toggle_rubrica(allegati.rubrica_filtri_allegati)">
+	<md-icon md-svg-icon="img/icons/filter.svg"></md-icon>
+	<md-tooltip md-direction="top">Altri filtri</md-tooltip>
+</md-button>
+<div flex></div>
+<md-button class="md-icon-button" ng-click="allegati.fn_filtri_set_default_filtri_app()">
+	<md-icon md-svg-icon="img/icons/broom.svg"></md-icon>
+	<md-tooltip md-direction="top">Pulisci filtri</md-tooltip>
+</md-button>

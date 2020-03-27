@@ -1,0 +1,28 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar no-padding"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'ubtable_checkups_toolbar.html'"
+></div>
+<div layout="row" layout-align="start start" class="full-height" flex>
+	<div
+		ng-if="checkups.rubrica_filtri_checkups.fl_open"
+		layout="column"
+		layout-align="start stretch"
+		class="full-height rubrica rubrica-left"
+		ng-controller="rubrica"
+		ng-init="init_rubrica(checkups.rubrica_filtri_checkups)"
+		ng-include="rubrica.template">
+	</div>
+	<div
+		ng-controller="filtri_app"
+		ng-init="filtri_app(checkups)"
+		ub-table
+		layout="column"
+		layout-align="start stretch"
+		class="full-height"
+		flex
+		ng-include="'ubtable_checkups.html'"
+	></div>
+</div>

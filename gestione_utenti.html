@@ -1,0 +1,22 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar no-padding"
+	md-colors="{background: colors.secondary_toolbar}"
+>
+	<md-button class="md-icon-button" ng-class="{'selected': utenti.rubrica_filtri_utenti.fl_open}" ng-click="utenti.toggle_rubrica(utenti.rubrica_filtri_utenti)">
+		<md-icon md-svg-icon="img/icons/filter.svg"></md-icon>
+		<md-tooltip md-direction="top">Filtri</md-tooltip>
+	</md-button>
+
+	<div flex></div>
+	<md-button class="md-icon-button" ng-click="utenti.fn_filtri_set_default_filtri_app()">
+		<md-icon md-svg-icon="img/icons/broom.svg"></md-icon>
+		<md-tooltip md-direction="top">Pulisci filtri</md-tooltip>
+	</md-button>
+</div>
+
+<div layout="row" layout-align="start start" class="full-height" flex>
+	<div ng-if="utenti.rubrica_filtri_utenti.fl_open" layout="column" layout-align="start stretch" class="full-height rubrica rubrica-left" ng-controller="rubrica" ng-init="init_rubrica(utenti.rubrica_filtri_utenti)" ng-include="rubrica.template"></div>
+	<div flex ng-controller="filtri_app" ng-init="filtri_app(utenti)" ub-table layout="column" layout-align="start stretch" class="full-height" ng-include="'ubtable_utenti.html'"></div>
+</div>

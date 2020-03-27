@@ -1,0 +1,79 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'report_toolbar.html'"
+></div>
+
+<!--<md-card
+	ng-if="report.page == 'aziende'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_aziende.html'"
+></md-card>
+<div
+	ng-if="report.page == 'aziende'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'report_aziende_toolbar.html'"
+></div>-->
+
+<md-card
+	ng-if="report.page == 'dipendenti'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'gestione_dipendenti.html'"
+></md-card>
+<div
+	ng-if="report.page == 'dipendenti'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'report_dipendenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="report.page == 'adempimenti'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'scadenziario_adempimenti.html'"
+></md-card>
+<div
+	ng-if="report.page == 'adempimenti'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'report_adempimenti_toolbar.html'"
+></div>
+
+<md-card
+	ng-if="report.page == 'dipendenti_formazioni'"
+	layout="column"
+	layout-align="start stretch"
+	layout-padding
+	flex
+	class="full-height"
+	ng-include="'scadenziario_dipendenti_formazioni.html'"
+></md-card>
+<div
+	ng-if="report.page == 'dipendenti_formazioni'"
+	layout="row"
+	layout-align="start center"
+	class="toolbar"
+	md-colors="{background: colors.secondary_toolbar}"
+	ng-include="'report_dipendenti_formazioni_toolbar.html'"
+></div>

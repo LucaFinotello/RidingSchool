@@ -1,0 +1,13 @@
+.block {
+	border: 1px solid black;
+	margin: 8px;
+}
+.block > .block-head {
+	
+}
+.block > .block-body {
+	border-top: 1px solid black;
+}
+.block > .block-footer {
+	border-top: 1px solid black;
+}

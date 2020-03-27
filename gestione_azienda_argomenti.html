@@ -1,0 +1,60 @@
+<div layout="row" layout-align="start center">
+	<md-icon md-svg-icon="img/icons/person_tie.svg"></md-icon>
+	<md-input-container flex>
+		<md-autocomplete
+			md-selected-item="gestione.azienda"
+			md-search-text="gestione.search_azienda"
+			md-items="azienda in aziende.righe | filter:search_azienda"
+			md-item-text="azienda.az_descr"
+			md-floating-label="Azienda"
+			md-no-cache="true"
+			md-min-length="0"
+			md-clear-button="true"
+			md-selected-item-change=""
+			md-search-text-change="gestione.azienda = undefined"
+		>
+			<md-item-template>
+				<div>{{azienda.az_id}} - {{azienda.az_descr}}</div>
+				<md-not-found>Non sono state trovate aziende per "{{search_azienda}}".</md-not-found>
+			</md-item-template>
+		</md-autocomplete>
+	</md-input-container>
+</div>
+<div ng-if="gestione.azienda" layout="row" layout-align="space-between start" class="full-height" flex layout-padding>
+	<div layout="column" layout-align="start stretch" class="full-height" flex>
+		<div layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/books.svg"></md-icon>
+			<div flex md-truncate class="md-title">Argomenti assegnabili</div>
+		</div>
+		<md-input-container>
+			<label>Cerca</label>
+			<input type="text" ng-model="gestione.search_argomenti"/>
+		</md-input-container>
+		<md-list class="md-dense">
+			<md-list-item class="md-2-line" ng-class="{'striped': $index % 2}" ng-repeat="argomento in argomenti.righe | not_in:gestione.azienda:argomento_in_azienda | filter:gestione.search_argomenti" ng-click="insert_azienda_argomento({aa_idazienda: gestione.azienda.az_id, aa_idargomento: argomento.ar_id, argomento: argomento})">
+				<div class="md-list-item-text">
+					<div class="md-body-1" md-truncate>{{argomento.ar_descr}}</div>
+					<div class="md-caption" md-truncate>{{argomento.ar_id}}</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+	<div layout="column" layout-align="start stretch" class="full-height" flex>
+		<div layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/books.svg"></md-icon>
+			<div flex md-truncate class="md-title">Argomenti assegnati</div>
+		</div>
+		<md-input-container>
+			<label>Cerca</label>
+			<input type="text" ng-model="gestione.search_argomenti_assegnati"/>
+		</md-input-container>
+		<md-list class="md-dense">
+			<md-list-item class="md-2-line" ng-class="{'striped': $index % 2}" ng-repeat="argomento in argomenti.righe | in:gestione.azienda:argomento_in_azienda | filter:gestione.search_argomenti_assegnati" ng-click="delete_azienda_argomento(aziende_argomenti.map[argomento.ar_id][gestione.azienda.az_id], true)">
+				<div class="md-list-item-text">
+					<div class="md-body-1" md-truncate>{{argomento.ar_descr}}</div>
+					<div class="md-caption" md-truncate>{{argomento.ar_id}}</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+</div>

@@ -1,0 +1,86 @@
+<div md-colors="{'background': 'grey-400-1'}">
+	<div layout="column" layout-align="start stretch">
+		<div layout="row" layout-align="space-between center" layout-padding layout-wrap>
+			<div class="md-display-2" flex md-truncate>Aziende</div>
+			<div class="md-title">{{postdata.date | date:'dd/MM/yyyy HH:mm'}}</div>
+		</div>
+		<md-divider class="md-body-2" layout-margin></md-divider>
+		<span class="md-body-2">Filtri:</span>
+		<div layout="row" layout-align="start start" layout-padding layout-wrap>
+			<div ng-if="postdata.filtri.search" layout="column" layout-align="start stretch" style="margin: 0 8px">
+				<md-icon md-svg-src="../../../img/icons/search.svg"></md-icon>
+				<div class="md-body-1" md-truncate>{{postdata.filtri.search}}</div>
+			</div>
+			<div ng-if="get_valid_keys(postdata.filtri.aziende_tipi).length > 1" layout="column" layout-align="start stretch" style="margin: 0 8px">
+				<md-icon md-svg-src="../../../img/icons/link.svg"></md-icon>
+				<div class="md-body-1" md-truncate>- {{postdata.filtri.aziende_tipi_operator}}</div>
+			</div>
+			<div ng-if="get_valid_keys(postdata.filtri.aziende_tipi).length > 0" layout="column" layout-align="start stretch" style="margin: 0 8px">
+				<md-icon md-svg-src="../../../img/icons/person_tie.svg"></md-icon>
+				<div class="md-body-1" md-truncate ng-repeat="filter_key in get_valid_keys(postdata.filtri.aziende_tipi)">- {{(postdata.filtri.aziende_tipi[filter_key] | toArray)[0]}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ub-table layout="column" layout-align="start stretch">
+	<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+		<div layout="row" class="ub-table-head">
+			<div class="ub-table-cell" flex ng-if="postdata.filtri.show.az_descr">
+				<div layout="row" layout-align="center center">
+					<md-icon md-svg-src="../../../img/icons/person_tie.svg"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_descr'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'az_descr'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_descr'}).length > 0 && (postdata.filtri.sorting | filter:{property:'az_descr'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-if="postdata.filtri.show.az_note">
+				<div layout="row" layout-align="center center">
+					<md-icon md-svg-src="../../../img/icons/note.svg"><md-tooltip md-direction="top">Note</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_note'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'az_note'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_note'}).length > 0 && (postdata.filtri.sorting | filter:{property:'az_note'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-if="postdata.filtri.show.az_flsocio">
+				<div layout="row" layout-align="space-around center">
+					<md-icon md-svg-src="../../../img/icons/people.svg"><md-tooltip md-direction="top">Socio</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_flsocio'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'az_flsocio'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_flsocio'}).length > 0 && (postdata.filtri.sorting | filter:{property:'az_flsocio'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-if="postdata.filtri.show.az_flcontratto">
+				<div layout="row" layout-align="space-around center">
+					<md-icon md-svg-src="../../../img/icons/document.svg"><md-tooltip md-direction="top">Contratto</md-tooltip></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_flcontratto'}).length > 0 && !(postdata.filtri.sorting | filter:{property:'az_flcontratto'})[0].reverse" md-svg-src="../../../img/icons/arrow_up.svg"></md-icon>
+					<md-icon ng-if="(postdata.filtri.sorting | filter:{property:'az_flcontratto'}).length > 0 && (postdata.filtri.sorting | filter:{property:'az_flcontratto'})[0].reverse" md-svg-src="../../../img/icons/arrow_down.svg"></md-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div flex layout="column" class="ub-table-body">
+		<div ng-repeat="azienda in postdata.righe">
+			<div class="ub-table-body-row" layout="row">
+				<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.az_descr">
+					<div layout="row" layout-align="start center" layout-fill>
+						<div class="md-caption" md-truncate>{{azienda.az_id}} - {{azienda.az_descr}}</div>
+					</div>
+				</div>
+				<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.az_note">
+					<div layout="row" layout-align="start center" layout-fill>
+						<div class="md-caption" md-truncate>{{azienda.az_note}}</div>
+					</div>
+				</div>
+				<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.az_flsocio">
+					<div layout="row" layout-align="space-around center" layout-fill>
+						<md-checkbox md-no-ink class="md-primary no-margin" ng-model="azienda.az_flsocio" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="az_flsocio"></md-checkbox>
+					</div>
+				</div>
+				<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="postdata.filtri.show.az_flcontratto">
+					<div layout="row" layout-align="space-around center" layout-fill>
+						<md-checkbox md-no-ink class="md-primary no-margin" ng-model="azienda.az_flcontratto" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="az_flcontratto"></md-checkbox>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

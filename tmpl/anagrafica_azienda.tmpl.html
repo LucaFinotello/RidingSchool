@@ -1,0 +1,35 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/circuit.svg"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+			<md-input-container flex>
+				<label>Descrizione</label>
+				<input type="text" ng-model="dialog.azienda.az_descr" ng-readonly="dialog.disabledform" ng-required="true"/>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note</label>
+				<textarea ng-model="dialog.azienda.az_note" rows="3" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="space-around center" layout-padding>
+			<md-button class="md-icon-button" ng-class="{'selected': dialog.azienda.az_flsocio == '1'}" ng-click="dialog.azienda.az_flsocio = dialog.azienda.az_flsocio == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/map.svg"></md-icon>
+				<md-tooltip md-direction="top">Italiano</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-class="{'selected': dialog.azienda.az_flcontratto == '1'}" ng-click="dialog.azienda.az_flcontratto = dialog.azienda.az_flcontratto == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/euro.svg"></md-icon>
+				<md-tooltip md-direction="top">Europeo</md-tooltip>
+			</md-button>
+			<md-button class="md-icon-button" ng-class="{'selected': dialog.azienda.az_flmondiale == '1'}" ng-click="dialog.azienda.az_flmondiale = dialog.azienda.az_flmondiale == '1' ? '0' : '1'" ng-disabled="dialog.disabledform">
+				<md-icon md-svg-src="img/icons/world.svg"></md-icon>
+				<md-tooltip md-direction="top">Mondiale</md-tooltip>
+			</md-button>
+		</div>
+	</div>
+</md-content>

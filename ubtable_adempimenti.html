@@ -1,0 +1,113 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.ch_date" aria-label="ch_date">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/calendar.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item ng-if="page() != 'scadenziario'">
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.ch_idazienda" aria-label="ch_idazienda">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/person_tie.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cr_idargomento" aria-label="cr_idargomento">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/books.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cr_idadempimento" aria-label="cr_idadempimento">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/book.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.cr_idstato" aria-label="cr_idstato">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/priority.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell ub-table-cell-80" ng-if="model.filtri.show.ch_date">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('ch_date')">
+				<md-icon md-svg-src="img/icons/calendar.svg"><md-tooltip md-direction="top">Data</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('ch_date') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('ch_date') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.ch_idazienda && page() != 'scadenziario'">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('ch_idazienda')">
+				<md-icon md-svg-src="img/icons/person_tie.svg"><md-tooltip md-direction="top">Azienda</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('ch_idazienda') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('ch_idazienda') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cr_idargomento">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cr_idargomento')">
+				<md-icon md-svg-src="img/icons/books.svg"><md-tooltip md-direction="top">Argomento</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idargomento') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idargomento') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cr_idadempimento">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cr_idadempimento')">
+				<md-icon md-svg-src="img/icons/book.svg"><md-tooltip md-direction="top">Adempimento</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idadempimento') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idadempimento') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.cr_idstato">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('cr_idstato')">
+				<md-icon md-svg-src="img/icons/priority.svg"><md-tooltip md-direction="top">Stato</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idstato') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('cr_idstato') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-50"></div>
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="item in model.filtered">
+		<div class="ub-table-body-row" layout="row" layout-align="start stretch">
+			<div class="ub-table-cell ub-table-cell-80" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.ch_date">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{item.ch_date | date:'dd/MM/yyyy HH:mm'}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.ch_idazienda && page() != 'scadenziario'">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{item.ch_idazienda}} - {{aziende.map[item.ch_idazienda].az_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cr_idargomento">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div flex class="md-caption" md-truncate>{{item.cr_idargomento}} - {{argomenti.map[item.cr_idargomento].ar_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cr_idadempimento">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{item.cr_idadempimento}} - {{(item.cr_idadempimento | get_adempimento:item.cr_idargomento).ad_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.cr_idstato">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{item.cr_idstato}} - {{(item.cr_idstato | get_stato:item.cr_idargomento:item.cr_idadempimento).st_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-50" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="select_history_adempimento(item)">
+						<md-icon md-svg-icon="img/icons/history.svg"></md-icon>
+						<md-tooltip md-direction="top">Storico</md-tooltip>
+					</md-button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

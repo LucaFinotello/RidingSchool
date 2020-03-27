@@ -1,0 +1,29 @@
+<img src="img/logo.png" class="login-logo" />
+
+<md-card class="login-card">
+	<md-button ng-if="key !== undefined" class="md-fab md-mini card-toggle card-toggle-top card-toggle-right" md-colors="{background: key ? 'green' : 'red'}" ng-click="toggle_key()">
+		<md-icon md-svg-icon="img/icons/tag.svg"></md-icon>
+		<md-tooltip md-direction="top">Accedi con chiave</md-tooltip>
+	</md-button>
+	<div layout="column" layout-align="start stretch">
+		<form>
+			<div layout="column" layout-align="start stretch" layout-padding>
+				<div class="md-headline">Login</div>
+				<div class="md-subhead">Accedi all'app</div>
+				<md-input-container>
+					<label>{{key ? 'Chiave' : 'Username'}}</label>
+					<input id="username" ub-focus type="{{key ? 'password' : 'text'}}" ng-model="loginBean.username" ng-required="true">
+				</md-input-container>
+				<md-input-container ng-if="!key">
+					<label>Password</label>
+					<input type="password" ng-model="loginBean.password" ng-required="true">
+				</md-input-container>
+				<md-checkbox ng-if="!key" class="md-primary" ng-model="loginBean.ricordami">Ricordami</md-checkbox>
+				<md-button ng-disabled="!loginBean.username || (!key && !loginBean.password)" class="md-raised md-primary" type="submit" ng-click="login(loginBean.username, loginBean.password, loginBean.ricordami)" >
+					Login
+				</md-button>
+				<input type="submit" hide />
+			</div>
+		</form>
+	</div>
+</md-card>

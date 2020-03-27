@@ -1,0 +1,113 @@
+<md-menu md-position-mode="target-right target">
+	<md-button class="md-fab md-mini md-primary ub-absolute ub-right" ng-click="$mdMenu.open()">
+		<md-icon md-svg-icon="img/icons/eye.svg"><md-tooltip md-direction="left">Mostra/nascondi colonne</md-tooltip></md-icon>
+	</md-button>
+	<md-menu-content ng-mouseleave="$mdMenu.close()" layout-padding>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.az_descr" aria-label="circuito">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/circuit.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.az_note" aria-label="az_note">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/note.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.az_flsocio" aria-label="az_flsocio">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/map.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.az_flcontratto" aria-label="az_flcontratto">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/euro.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.az_flmondiale" aria-label="az_flmondiale">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/world.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
+
+<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+	<div layout="row" class="ub-table-head">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.az_descr">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('az_descr')">
+				<md-icon md-svg-src="img/icons/circuit.svg"><md-tooltip md-direction="top">Circuito</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_descr') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_descr') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.az_note">
+			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('az_note')">
+				<md-icon md-svg-src="img/icons/note.svg"><md-tooltip md-direction="top">Note</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.az_flsocio">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('az_flsocio')">
+				<md-icon md-svg-src="img/icons/map.svg"><md-tooltip md-direction="top">Italiano</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_flsocio') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_flsocio') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.az_flcontratto">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('az_flcontratto')">
+				<md-icon md-svg-src="img/icons/euro.svg"><md-tooltip md-direction="top">Europeo</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_flcontratto') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_flcontratto') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<div class="ub-table-cell ub-table-cell-33" ng-if="model.filtri.show.az_flmondiale">
+			<div layout="row" layout-align="space-around center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('az_flmondiale')">
+				<md-icon md-svg-src="img/icons/world.svg"><md-tooltip md-direction="top">Mondiale</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_flmondiale') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('az_flmondiale') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+			</div>
+		</div>
+		<!--<div class="ub-table-cell ub-table-cell-33"></div>-->
+	</div>
+</div>
+
+<div flex layout="column" class="ub-table-body" scroll="model">
+	<div ng-repeat="azienda in model.filtered">
+		<div class="ub-table-body-row" layout="row" ng-click="anagrafica_azienda(azienda)">
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.az_descr">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{azienda.az_descr}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.az_note">
+				<div layout="row" layout-align="start center" layout-fill>
+					<div class="md-caption" md-truncate>{{azienda.az_note}}</div>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.az_flsocio">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="azienda.az_flsocio" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="Italiano"></md-checkbox>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.az_flcontratto">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="azienda.az_flcontratto" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="Europeo"></md-checkbox>
+				</div>
+			</div>
+			<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.az_flmondiale">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-checkbox md-no-ink class="md-primary no-margin" ng-model="azienda.az_flmondiale" ng-true-value="'1'" ng-false-value="'0'" ng-disabled="true" aria-label="Mondiale"></md-checkbox>
+				</div>
+			</div>
+			<!--<div class="ub-table-cell ub-table-cell-33" ng-class="{'striped': $index % 2 == 1}">
+				<div layout="row" layout-align="space-around center" layout-fill>
+					<md-button class="md-icon-button" ng-click="anagrafica_azienda(azienda)">
+						<md-icon md-svg-icon="img/icons/edit.svg"></md-icon>
+						<md-tooltip md-direction="top">Modifica</md-tooltip>
+					</md-button>
+				</div>
+			</div>-->
+		</div>
+	</div>
+</div>

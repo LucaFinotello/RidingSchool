@@ -1,0 +1,38 @@
+<div layout="column" layout-align="start stretch" flex class="full-height">
+	<div> <!-- importantissimo questo div inutile. non eliminare. fixa un bug grafico -->
+		<div layout="row" layout-align="start center">
+			<md-input-container flex>
+				<label>Cerca</label>
+				<input type="text" ng-model="rubrica.model.filtri.search" />
+
+				<md-button class="md-icon-button ub-suffix" ng-click="rubrica.model.filtri.search = undefined" ng-if="rubrica.model.filtri.search" aria-label="rubrica-search">
+					<md-icon md-svg-src="img/icons/cancel.svg"></md-icon>
+				</md-button>
+			</md-input-container>
+		</div>
+	</div>
+
+	<md-input-container>
+		<md-switch class="md-primary md-body-1" ng-model="rubrica.model.filtri.fl_data_esecuzione">Filtra per data di esecuzione</md-switch>
+	</md-input-container>
+	<md-input-container>
+		<label>Dal</label>
+		<md-datepicker ng-model="rubrica.model.filtri.data_inizio_esecuzione" md-max-date="rubrica.model.filtri.data_fine_esecuzione" ng-disabled="!rubrica.model.filtri.fl_data_esecuzione"></md-datepicker>
+	</md-input-container>
+	<md-input-container>
+		<label>Al</label>
+		<md-datepicker ng-model="rubrica.model.filtri.data_fine_esecuzione" md-min-date="rubrica.model.filtri.data_inizio_esecuzione" ng-disabled="!rubrica.model.filtri.fl_data_esecuzione"></md-datepicker>
+	</md-input-container>
+
+	<md-input-container>
+		<md-switch class="md-primary md-body-1" ng-model="rubrica.model.filtri.fl_data_scadenza">Filtra per data di scadenza</md-switch>
+	</md-input-container>
+	<md-input-container>
+		<label>Dal</label>
+		<md-datepicker ng-model="rubrica.model.filtri.data_inizio_scadenza" md-max-date="rubrica.model.filtri.data_fine_scadenza" ng-disabled="!rubrica.model.filtri.fl_data_scadenza"></md-datepicker>
+	</md-input-container>
+	<md-input-container>
+		<label>Al</label>
+		<md-datepicker ng-model="rubrica.model.filtri.data_fine_scadenza" md-min-date="rubrica.model.filtri.data_inizio_scadenza" ng-disabled="!rubrica.model.filtri.fl_data_scadenza"></md-datepicker>
+	</md-input-container>
+</div>

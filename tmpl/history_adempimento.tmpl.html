@@ -1,0 +1,26 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<div class="md-title" ng-if="!dialog.adempimenti.righe.length">Nessun dato da visualizzare</div>
+		<div ng-if="dialog.adempimenti.righe.length" layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/person_tie.svg"></md-icon>
+			<div class="md-subhead">{{dialog.adempimenti.righe[0].ch_idazienda}} - {{dialog.aziende.map[dialog.adempimenti.righe[0].ch_idazienda].az_descr}}</div>
+		</div>
+		<div ng-if="dialog.adempimenti.righe.length" layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/books.svg"></md-icon>
+			<div class="md-subhead">{{dialog.adempimenti.righe[0].cr_idargomento}} - {{dialog.argomenti.map[dialog.adempimenti.righe[0].cr_idargomento].ar_descr}}</div>
+		</div>
+		<div ng-if="dialog.adempimenti.righe.length" layout="row" layout-align="start center">
+			<md-icon md-svg-icon="img/icons/book.svg"></md-icon>
+			<div class="md-subhead">{{dialog.adempimenti.righe[0].cr_idadempimento}} - {{(dialog.adempimenti.righe[0].cr_idadempimento | get_adempimento:dialog.adempimenti.righe[0].cr_idargomento).ad_descr}}</div>
+		</div>
+		<md-list>
+			<md-list-item class="md-2-line" ng-class="{'striped': $index % 2}" ng-repeat="adempimento in dialog.adempimenti.righe | orderBy:['-ch_date']">
+				<md-icon md-svg-icon="img/icons/calendar.svg"></md-icon>
+				<div class="md-list-item-text">
+					<div class="md-body-2" md-truncate>{{adempimento.ch_date | date:'dd/MM/yyyy HH:mm'}}</div>
+					<div class="md-body-1" md-truncate>{{(adempimento.cr_idstato | get_stato:adempimento.cr_idargomento:adempimento.cr_idadempimento).st_id}} - {{(adempimento.cr_idstato | get_stato:adempimento.cr_idargomento:adempimento.cr_idadempimento).st_descr}}</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-content>

@@ -1,0 +1,214 @@
+<md-content layout-padding>
+	<div layout="column" layout-align="start stretch" layout-padding>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/books.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.checkup_riga.argomento"
+					md-search-text="dialog.argomento_search"
+					md-items="argomento in dialog.argomenti.righe | filter:dialog.argomento_search"
+					md-item-text="argomento.ar_descr"
+					md-floating-label="Argomento"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.checkup_riga.cr_idargomento = argomento.ar_id; dialog.checkup_riga.cr_idadempimento = undefined; dialog.checkup_riga.adempimento = undefined"
+					md-search-text-change="dialog.checkup_riga.cr_idargomento = undefined; dialog.checkup_riga.argomento = undefined; dialog.checkup_riga.cr_idadempimento = undefined; dialog.checkup_riga.adempimento = undefined"
+					ng-disabled="dialog.disabledform"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{argomento.ar_id}} - {{argomento.ar_descr}}</div>
+						<md-not-found>Non sono stato trovati argomenti per "{{dialog.argomento_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/book.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.checkup_riga.adempimento"
+					md-search-text="dialog.adempimento_search"
+					md-items="adempimento in (dialog.checkup_riga.argomento ? dialog.checkup_riga.argomento.adempimenti : []) | not_in:dialog.checkup ? dialog.checkup.righe : []:dialog.adempimento_in_checkup | filter:dialog.adempimento_search"
+					md-item-text="adempimento.ad_descr"
+					md-floating-label="Adempimento"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.checkup_riga.cr_idadempimento = adempimento.ad_id"
+					md-search-text-change="dialog.checkup_riga.cr_idadempimento = undefined; dialog.checkup_riga.adempimento = undefined;"
+					ng-disabled="dialog.disabledform || !dialog.checkup_riga.argomento"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{adempimento.ad_id}} - {{adempimento.ad_descr}}</div>
+						<md-not-found>Non sono stati trovati adempimenti per "{{dialog.adempimento_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/priority.svg"></md-icon>
+			<md-input-container flex>
+				<md-autocomplete
+					md-selected-item="dialog.checkup_riga.stato"
+					md-search-text="dialog.stato_search"
+					md-items="stato in (dialog.checkup_riga.adempimento ? dialog.checkup_riga.adempimento.stati : []) | filter:dialog.stato_search"
+					md-item-text="stato.st_descr"
+					md-floating-label="Stato"
+					md-no-cache="true"
+					md-min-length="0"
+					md-clear-button="!dialog.disabledform"
+					md-selected-item-change="dialog.checkup_riga.cr_idstato = stato.st_id"
+					md-search-text-change="dialog.checkup_riga.cr_idstato = undefined; dialog.checkup_riga.stato = undefined;"
+					ng-disabled="dialog.disabledform || !dialog.checkup_riga.argomento"
+					ng-required="true"
+				>
+					<md-item-template>
+						<div>{{stato.st_id}} - {{stato.st_descr}}</div>
+						<md-not-found>Non sono stati trovati stati per "{{dialog.stato_search}}".</md-not-found>
+					</md-item-template>
+				</md-autocomplete>
+			</md-input-container>
+		</div>
+
+		<md-divider ng-if="(!dialog.disabledform && dialog.checkup_riga.cr_idstato) || dialog.checkup_riga.sanzioni.length" layout-margin md-colors="{'border-color': 'grey-900'}"></md-divider>
+
+		<div ng-if="!dialog.disabledform && dialog.checkup_riga.cr_idstato" layout="row" layout-align="start center" layout-padding>
+			<md-button class="md-icon-button" ng-click="dialog.checkup_riga.sanzioni.push({})" aria-label="add">
+				<md-icon md-svg-icon="img/icons/money_add.svg"></md-icon>
+				<md-tooltip md-direction="bottom">Aggiungi sanzione</md-tooltip>
+			</md-button>
+		</div>
+
+		<div ng-repeat="checkup_riga_sanzione in dialog.checkup_riga.sanzioni">
+			<div layout="row" layout-align="start center" layout-padding>
+				<md-icon md-svg-src="img/icons/money.svg"></md-icon>
+				<md-input-container flex>
+					<label>Tipo non conformità</label>
+					<input type="text" ng-model="checkup_riga_sanzione.crs_descr" ng-required="true" ng-readonly="dialog.disabledform">
+				</md-input-container>
+				<md-input-container flex>
+					<md-autocomplete
+						md-selected-item="checkup_riga_sanzione.sanzione"
+						md-search-text="checkup_riga_sanzione.sanzione_search"
+						md-items="sanzione in (dialog.checkup_riga.stato ? dialog.checkup_riga.stato.sanzioni : []) | filter:checkup_riga_sanzione.sanzione_search"
+						md-item-text="sanzione.sa_descr"
+						md-floating-label="Sanzione"
+						md-no-cache="true"
+						md-min-length="0"
+						md-clear-button="!dialog.disabledform"
+						md-selected-item-change="checkup_riga_sanzione.crs_idsanzione = sanzione.sa_id"
+						md-search-text-change="checkup_riga_sanzione.crs_idsanzione = undefined; checkup_riga_sanzione.sanzione = undefined;"
+						ng-disabled="dialog.disabledform || !dialog.checkup_riga.stato"
+						ng-required="true"
+					>
+						<md-item-template>
+							<div>{{sanzione.sa_id}} - {{sanzione.sa_descr}}</div>
+							<md-not-found>Non sono state trovate sanzioni per "{{checkup_riga_sanzione.sanzione_search}}".</md-not-found>
+						</md-item-template>
+					</md-autocomplete>
+				</md-input-container>
+				<md-button ng-if="!dialog.disabledform" class="md-icon-button" ng-click="dialog.splice(dialog.checkup_riga.sanzioni, checkup_riga_sanzione, true, 'Sicuro di voler rimuovere la sanzione?')" aria-label="delete">
+					<md-icon md-svg-icon="img/icons/delete.svg"></md-icon>
+					<md-tooltip md-direction="bottom">Eimina sanzione</md-tooltip>
+				</md-button>
+			</div>
+			<div layout="row" layout-align="start center" layout-padding>
+				<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+				<md-input-container flex>
+					<label>Note</label>
+					<textarea rows="2" ng-model="checkup_riga_sanzione.crs_note" ng-readonly="dialog.disabledform"></textarea>
+				</md-input-container>
+				<md-input-container flex ng-if="dialog.logged_user | utente_is_utente">
+					<label>Note interne</label>
+					<textarea rows="2" ng-model="checkup_riga_sanzione.crs_note_interne" ng-readonly="dialog.disabledform"></textarea>
+				</md-input-container>
+				<md-input-container flex ng-if="dialog.checkup.ch_idutente == dialog.logged_user.username">
+					<label>Note utente</label>
+					<textarea rows="2" ng-model="checkup_riga_sanzione.crs_note_utente" ng-readonly="dialog.disabledform"></textarea>
+				</md-input-container>
+			</div>
+			<md-divider ng-if="!$last" layout-margin></md-divider>
+		</div>
+
+		<md-divider layout-margin md-colors="{'border-color': 'grey-900'}"></md-divider>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/calendar_done.svg"></md-icon>
+			<md-input-container flex>
+				<label>Esecuzione</label>
+				<md-datepicker ng-model="dialog.checkup_riga.cr_data_esecuzione" md-max-date="dialog.checkup_riga.cr_data_scadenza" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform"></md-datepicker>
+			</md-input-container>
+		</div>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/calendar_priority.svg"></md-icon>
+			<md-input-container flex>
+				<label>Scadenza</label>
+				<md-datepicker ng-model="dialog.checkup_riga.cr_data_scadenza" md-min-date="dialog.checkup_riga.cr_data_esecuzione" ng-disabled="dialog.disabledform" ng-readonly="dialog.disabledform"></</md-datepicker>
+			</md-input-container>
+		</div>
+
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex>
+				<label>Note</label>
+				<textarea rows="2" ng-model="dialog.checkup_riga.cr_note" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex ng-if="dialog.logged_user | utente_is_utente">
+				<label>Note interne</label>
+				<textarea rows="2" ng-model="dialog.checkup_riga.cr_note_interne" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+		<div layout="row" layout-align="start center" layout-padding>
+			<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+			<md-input-container flex ng-if="dialog.checkup.ch_idutente == dialog.logged_user.username">
+				<label>Note utente</label>
+				<textarea rows="2" ng-model="dialog.checkup_riga.cr_note_utente" ng-readonly="dialog.disabledform"></textarea>
+			</md-input-container>
+		</div>
+
+		<md-divider ng-if="!dialog.disabledform || dialog.checkup_riga.allegati.length" layout-margin md-colors="{'border-color': 'grey-900'}"></md-divider>
+
+		<div ng-if="!dialog.disabledform" layout="row" layout-align="start center" layout-padding>
+			<md-button class="md-icon-button" ng-click="dialog.click_element_by_id('input-allegato')" aria-label="add">
+				<md-icon md-svg-icon="img/icons/allegato_add.svg"></md-icon>
+				<md-tooltip md-direction="bottom">Aggiungi allegato</md-tooltip>
+			</md-button>
+			<input hide type="file" ng-model="dialog.allegato" id="input-allegato" ub-input-model-change="dialog.push_allegato" ub-input-model-change-data="{checkup_riga: dialog.checkup_riga}">
+		</div>
+
+		<div ng-repeat="allegato in dialog.checkup_riga.allegati">
+			<div layout="row" layout-align="start center" layout-padding>
+				<md-button class="md-icon-button" ng-click="allegato.blob_base64 ? dialog.download_file_by_base64(allegato.blob_base64, allegato.al_descr, allegato.al_type, true) : dialog.download_file(allegato.al_path, allegato.al_descr, true)">
+					<md-icon md-svg-icon="img/icons/download.svg"></md-icon>
+					<md-tooltip md-direction="top">Download</md-tooltip>
+				</md-button>
+				<div class="md-body-1" flex md-truncate>{{allegato.al_id}} - {{allegato.al_descr}} ({{allegato.al_size | filesize_currency}})</div>
+				<md-button ng-if="!dialog.disabledform" class="md-icon-button" ng-click="dialog.remove_allegato(allegato)" aria-label="delete">
+					<md-icon md-svg-icon="img/icons/delete.svg"></md-icon>
+					<md-tooltip md-direction="bottom">Rimuovi allegato</md-tooltip>
+				</md-button>
+			</div>
+			<div layout="row" layout-align="start center" layout-padding>
+				<md-icon md-svg-src="img/icons/note.svg"></md-icon>
+				<md-input-container flex>
+					<label>Note</label>
+					<textarea rows="2" ng-model="allegato.al_note" ng-readonly="dialog.disabledform"></textarea>
+				</md-input-container>
+				<md-input-container flex ng-if="dialog.logged_user | utente_is_utente">
+					<label>Note interne</label>
+					<textarea rows="2" ng-model="allegato.al_note_interne" ng-readonly="dialog.disabledform"></textarea>
+				</md-input-container>
+			</div>
+			<md-divider ng-if="!$last" layout-margin></md-divider>
+		</div>
+
+	</div>
+</md-content>
