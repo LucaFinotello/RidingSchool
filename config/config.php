@@ -6,13 +6,13 @@
  * 2 = DEMO
  * 3 = PROD
  */
-$fl_prod = 3;
+$fl_prod = 0;
 
 # DEV
 # URL
-$url						= "localhost/RidingSchool/";
+$url						= "http://127.0.0.1/RidingSchool/";
 # DB
-$db_host					= "localhost";
+$db_host					= "127.0.0.1";
 $db_name					= "ridingschool";
 $db_user					= "root";
 $db_pass					= "";

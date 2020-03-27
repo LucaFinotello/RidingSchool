@@ -15,7 +15,7 @@
 		</md-menu-item>
 		<md-menu-item>
 			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.aa_ant" aria-label="aa_ant">
-				<md-icon class="no-padding no-margin" md-svg-src="img/icons/crm.svg"></md-icon>
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/suspension.svg"></md-icon>
 			</md-checkbox>
 		</md-menu-item>
 		<md-menu-item>
@@ -25,17 +25,22 @@
 		</md-menu-item>
 		<md-menu-item>
 			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.aa_post" aria-label="aa_post">
-				<md-icon class="no-padding no-margin" md-svg-src="img/icons/timelapse.svg"></md-icon>
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/suspension.svg"></md-icon>
+			</md-checkbox>
+		</md-menu-item>
+		<md-menu-item>
+			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.aa_post" aria-label="aa_post">
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/precarico.svg"></md-icon>
 			</md-checkbox>
 		</md-menu-item>
 		<md-menu-item>
 			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.aa_pres_ant" aria-label="aa_pres_ant">
-				<md-icon class="no-padding no-margin" md-svg-src="img/icons/note.svg"></md-icon>
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/precarico.svg"></md-icon>
 			</md-checkbox>
 		</md-menu-item>
 		<md-menu-item>
 			<md-checkbox layout="row" layout-align="start center" class="md-primary no-margin" ng-model="model.filtri.show.aa_gradi" aria-label="aa_gradi">
-				<md-icon class="no-padding no-margin" md-svg-src="img/icons/note.svg"></md-icon>
+				<md-icon class="no-padding no-margin" md-svg-src="img/icons/termo.svg"></md-icon>
 			</md-checkbox>
 		</md-menu-item>
 		<md-menu-item>
@@ -62,9 +67,9 @@
 				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_date') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
 		</div>
-		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_descr">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_ant">
 			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('aa_ant')">
-				<md-icon md-svg-src="img/icons/crm.svg"><md-tooltip md-direction="top">Sospensioni</md-tooltip></md-icon>
+				<md-icon md-svg-src="img/icons/suspension.svg"><md-tooltip md-direction="top">Sospensioni</md-tooltip></md-icon>
 				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_descr') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
 				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_descr') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
@@ -76,32 +81,32 @@
 				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_idutente') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
 		</div>
-		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_qta">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_post">
 			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('aa_post')">
-				<md-icon md-svg-src="img/icons/timelapse.svg"><md-tooltip md-direction="top">Mono</md-tooltip></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_qta') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_qta') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+				<md-icon md-svg-src="img/icons/suspension.svg"><md-tooltip md-direction="top">Mono</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_post') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_post') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
 		</div>
-		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_note">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_pres_ant">
 			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('aa_pres_ant')">
-				<md-icon md-svg-src="img/icons/note.svg"><md-tooltip md-direction="top">Pressioni</md-tooltip></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+				<md-icon md-svg-src="img/icons/pressione.svg"><md-tooltip md-direction="top">Pressioni</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_pres_ant') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_pres_ant') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
 		</div>
-		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_note">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_gradi">
 			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('aa_gradi')">
-				<md-icon md-svg-src="img/icons/note.svg"><md-tooltip md-direction="top">Temperature</md-tooltip></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+				<md-icon md-svg-src="img/icons/termo.svg"><md-tooltip md-direction="top">Temperature</md-tooltip></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_gradi') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_gradi') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
 		</div>
-		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_note">
+		<div class="ub-table-cell" flex ng-if="model.filtri.show.aa_moto">
 			<div layout="row" layout-align="center center" ng-click="model.filtri_app_scope.fn_filtri_sort_by('aa_moto')">
 				<md-icon md-svg-src="img/icons/pista.svg"><md-tooltip md-direction="top">Moto</md-tooltip></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_note') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
-				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_note') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_moto') == 'asc'" md-svg-src="img/icons/arrow_up.svg"></md-icon>
+				<md-icon ng-if="model.filtri_app_scope.fn_filtri_sorted_by('aa_moto') == 'desc'" md-svg-src="img/icons/arrow_down.svg"></md-icon>
 			</div>
 		</div>
 		<!--<div class="ub-table-cell ub-table-cell-33"></div>-->
@@ -127,7 +132,7 @@
 			</div>
 			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.aa_ant">
 				<div layout="row" layout-align="start center" layout-fill>
-					<div flex class="md-caption" md-truncate>{{azienda_activity.aa_ant}} -  Precarico: {{azienda_activity.aa_pre_ant}}</div>
+					<div flex class="md-caption" md-truncate>Forcella {{azienda_activity.aa_ant}} -  Precarico: {{azienda_activity.aa_pre_ant}}</div>
 				</div>
 			</div>
 			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.aa_idutente">
@@ -137,7 +142,7 @@
 			</div>
 			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.aa_post">
 				<div layout="row" layout-align="center center" layout-fill>
-					<div flex class="md-caption" md-truncate>{{azienda_activity.aa_post}} -  Precarico: {{azienda_activity.aa_pre_post}}</div>
+					<div flex class="md-caption" md-truncate>Mono {{azienda_activity.aa_post}} -  Precarico: {{azienda_activity.aa_pre_post}}</div>
 				</div>
 			</div>
 			<div class="ub-table-cell" flex ng-class="{'striped': $index % 2 == 1}" ng-if="model.filtri.show.aa_pres_ant">
