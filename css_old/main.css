@@ -7,7 +7,7 @@ body:not(.ubprint) {
 	background-color: #eee;
 }
 
-.dark-primary-color    { background: red/*#1976D2*/; }
+.dark-primary-color    { background: #ff0000; }
 .default-primary-color { background: red; }
 .light-primary-color   { background: #BBDEFB; }
 .text-primary-color    { color: #FFFFFF; }

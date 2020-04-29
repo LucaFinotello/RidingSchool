@@ -1,5 +1,5 @@
 .statusbar-app {
-	background-color: #4899ea !important;
+	background-color: #ff0000 !important;
 	height: 40px;
 }
 .statusbar-app.open {
@@ -16,5 +16,5 @@
 ,.statusbar-app label
 ,.statusbar-app md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label
 ,.statusbar-app md-input-container:not(.md-input-invalid).md-input-has-value label {
-	color: blue;
+	color: #ff0000;
 }

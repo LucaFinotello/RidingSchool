@@ -16,8 +16,8 @@ subdomain	= subdomain		? subdomain		: "";
 url = "http://127.0.0.1/RidingSchool/";	//DEV
 //url = "test.ubware.it/ubmanagement/";								//TEST
 //url = "show.ubware.it/ubmanagement/";								//DEMO
-//url = "https://www.teamracinglf.cloud/RidingSchool/";								//PROD
-//url = "www.teamracinglf.cloud/RidingSchool/";							//PROD DNS
+//url = "https://www.teamracinglf.cloud/RidingSchool/";				//PROD
+//url = "www.teamracinglf.cloud/RidingSchool/";						//PROD DNS
 
 //url = http_https + subdomain + url;
 
